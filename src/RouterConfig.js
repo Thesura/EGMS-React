@@ -12,7 +12,7 @@ function RouterConfig({ variable, setVariable , loggedIn, setLoggedIn}){
     return (
         <Routes>
           <Route index element={<Landing/>}></Route>
-          <Route path="home" element={<AuthGuard auth={loggedIn}><Home/></AuthGuard>}></Route>
+          <Route path="home" element={loggedIn? <Home/> : <Landing/>}></Route>
           <Route path="login" element={<Login variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} />}></Route>
           <Route path="register" element={<Register/>}></Route>
           <Route path="report" element={<AuthGuard auth={loggedIn}><Report/></AuthGuard>}></Route>

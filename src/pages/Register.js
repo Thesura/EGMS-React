@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FetchRequest from "../FetchRequest";
+import { Link } from "react-router-dom";
+
 
 function Register(){
     
@@ -87,6 +89,10 @@ function Register(){
             </button>
           </div>
         </form>
+        <div className="mt-5">
+        <p className="mb-1">Already have an account?</p>
+        <Link className="link-info text-decoration-none " to="/login">Login</Link>
+      </div>
       </div>
     );
 
