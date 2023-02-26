@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 
-function Navbar({ variable, setVariable, loggedIn, setLoggedIn }) {
+function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff }) {
+
+  const theme = staff? "success" : "primary";
+
   return (
     <>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+      <nav className={`navbar fixed-top navbar-expand-lg navbar-dark bg-${theme}`}>
         <button
           className="navbar-toggler"
           type="button"

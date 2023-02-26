@@ -8,6 +8,8 @@ import Navbar from "./layouts/Navbar";
 function App() {
   const [variable, setVariable] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [staff, setStaff] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   const containerStyles = {
     "padding-top" : "5rem"
@@ -16,9 +18,9 @@ function App() {
   return (
     <>       
           <Router>
-            <Navbar variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn}/>
+            <Navbar variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} staff={staff} setStaff={setStaff}/>
             <div className="container d-flex align-self-stretch" style={containerStyles}>
-              <RouterConfig  variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn}/>
+              <RouterConfig  variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} staff={staff} setStaff={setStaff} admin={admin} setAdmin={setAdmin}/>
             </div>
           </Router>
     </>

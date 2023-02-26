@@ -4,12 +4,12 @@ import FetchRequest from "../FetchRequest";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
-function Login({ variable, setVariable, loggedIn, setLoggedIn }) {
+function Login({ variable, setVariable, loggedIn, setLoggedIn , staff, setStaff}) {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [staff, setStaff] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   const handleUsername = (event) => {
     setUsername(event.target.value);
@@ -20,13 +20,14 @@ function Login({ variable, setVariable, loggedIn, setLoggedIn }) {
   };
 
   const handleStaffCheck = (event) => {
-    setStaff(!staff);
+    setChecked(!checked);
+
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (staff) {
+    if (checked) {
       alert("staff");
     } else {
       console.log(username);
@@ -79,7 +80,7 @@ function Login({ variable, setVariable, loggedIn, setLoggedIn }) {
             role="switch"
             className="form-check-input"
             id="userType"
-            checked={staff}
+            checked={checked}
             onChange={handleStaffCheck}
           />
           <label htmlFor="userType" className="form-label">

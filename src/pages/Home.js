@@ -3,58 +3,108 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Breakpoints from "../utils/Breakpoints";
 
-
 const Container = styled.div`
-    ${'' /* ${Breakpoints("padding-top", "rem", [ {510: 13} ], "max-width")} */}
-`
+  ${Breakpoints("widht", "%", [{ 992: 100 }], "min-width")}
+`;
 
-function Home() {
-  return (
-    <Container className="d-flex flex-column flex-lg-row overflow-auto">
-
-      <div class="card text-bg-primary mt-3 mx-5">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">Primary card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <Link to="/status" className="btn btn-outline-light btn-lg mt-5">
-            Status
-          </Link>
+function Home(staff, setStaff, admin, setAdmin) {
+  if (staff) {
+    return (
+      <Container className="d-flex flex-column flex-lg-row overflow-auto">
+        <div className="card text-bg-primary mt-3 mx-5">
+          <div className="card-header">
+            <h5 className="card-title">Status</h5>
+          </div>
+          <div className="card-body">
+            <p className="card-text">
+              View the status of electricity availability of each area.
+            </p>
+            <Link to="/status" className="btn btn-outline-light btn-lg mt-5">
+              Status
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div class="card text-bg-primary mt-3 mx-5">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">Primary card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <Link to="/report" className="btn btn-outline-light btn-lg mt-5">
-            Report
-          </Link>
+        <div className="card text-bg-primary mt-3 mx-5">
+          <div className="card-header">
+            <h5 className="card-title">Outage Reports</h5>
+          </div>
+          <div className="card-body">
+            <p className="card-text">View current power outage Reports.</p>
+            <Link to="/report" className="btn btn-outline-light btn-lg mt-5">
+              Report
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div class="card text-bg-primary mt-3 mx-5">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">Primary card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <Link to="/schedule" className="btn btn-outline-light btn-lg mt-5">
-            Schedule
-          </Link>
+        <div className="card text-bg-primary mt-3 mx-5">
+          <div className="card-header">
+            <h5 className="card-title">Create Schedule</h5>
+          </div>
+          <div className="card-body">
+            <p className="card-text">Create planned power interruption shcedule entries.</p>
+            <Link to="/schedule" className="btn btn-outline-light btn-lg mt-5">
+              Schedule
+            </Link>
+          </div>
         </div>
-      </div>
-    </Container>
-  );
+
+        <div className={`card text-bg-primary mt-3 mx-5 ${!admin ? "d-none" : ""}`}>
+          <div className="card-header">
+            <h5 className="card-title">User Management</h5>
+          </div>
+          <div className="card-body">
+            <p className="card-text">Manage current users and create new users.</p>
+            <Link to="/report" className="btn btn-outline-light btn-lg mt-5">
+              Report
+            </Link>
+          </div>
+        </div>
+      </Container>
+    );
+  } else {
+    return (
+      <Container className="d-flex flex-column flex-lg-row overflow-auto">
+        <div className="card text-bg-primary mt-3 mx-5">
+          <div className="card-header">
+            <h5 className="card-title">Status</h5>
+          </div>
+          <div className="card-body">
+            <p className="card-text">
+              View the status of electricity availability of each area.
+            </p>
+            <Link to="/status" className="btn btn-outline-light btn-lg mt-5">
+              Status
+            </Link>
+          </div>
+        </div>
+
+        <div className="card text-bg-primary mt-3 mx-5">
+          <div className="card-header">
+            <h5 className="card-title">Report</h5>
+          </div>
+          <div className="card-body">
+            <p className="card-text">Report a power outage.</p>
+            <Link to="/report" className="btn btn-outline-light btn-lg mt-5">
+              Report
+            </Link>
+          </div>
+        </div>
+
+        <div className="card text-bg-primary mt-3 mx-5" >
+          <div className="card-header">
+            <h5 className="card-title">Schedule</h5>
+          </div>
+          <div className="card-body">
+            <p className="card-text">View the planned power interruptions.</p>
+            <Link to="/schedule" className="btn btn-outline-light btn-lg mt-5">
+              Schedule
+            </Link>
+          </div>
+        </div>
+      </Container>
+    );
+  }
 }
 
 export default Home;

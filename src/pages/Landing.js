@@ -5,6 +5,8 @@ import Breakpoints from "../utils/Breakpoints";
 
 function Landing(){
 
+ const type = "success";
+
  const Container = styled.div`
     padding : 5rem;
     width : 30%;
