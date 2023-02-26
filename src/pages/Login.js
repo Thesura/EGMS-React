@@ -4,12 +4,11 @@ import FetchRequest from "../FetchRequest";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
-function Login({ variable, setVariable, loggedIn, setLoggedIn , staff, setStaff}) {
+function Login({ variable, setVariable, loggedIn, setLoggedIn , staff, setStaff, admin, setAdmin}) {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [checked, setChecked] = useState(false);
 
   const handleUsername = (event) => {
     setUsername(event.target.value);
@@ -20,19 +19,16 @@ function Login({ variable, setVariable, loggedIn, setLoggedIn , staff, setStaff}
   };
 
   const handleStaffCheck = (event) => {
-    setChecked(!checked);
+    setStaff(!staff);
 
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (checked) {
-      alert("staff");
-    } else {
       console.log(username);
       let data = { username: username, password: password };
-      let url = "http://localhost:5000/nonstaffusers/login";
+      let url = `http://localhost:5000/${staff? "staffusers" : "nonstaffusers"}/login`;
 
       let response = FetchRequest(url, "POST", data);
 
@@ -40,14 +36,15 @@ function Login({ variable, setVariable, loggedIn, setLoggedIn , staff, setStaff}
         if (value.auth) {
           setVariable(username);
           setLoggedIn(true);
+          setAdmin(value.admin);
+
           navigate("/home");
         } else {
           console.log("failed");
           alert("Incorrect Credentials");
         }
       });
-    }
-  };
+    };
 
   return (
     <div className="mt-5">
@@ -80,7 +77,7 @@ function Login({ variable, setVariable, loggedIn, setLoggedIn , staff, setStaff}
             role="switch"
             className="form-check-input"
             id="userType"
-            checked={checked}
+            checked={staff}
             onChange={handleStaffCheck}
           />
           <label htmlFor="userType" className="form-label">

@@ -9,7 +9,7 @@ function App() {
   const [variable, setVariable] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [staff, setStaff] = useState(false);
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(0);
 
   const containerStyles = {
     "padding-top" : "5rem"
@@ -18,7 +18,7 @@ function App() {
   return (
     <>       
           <Router>
-            <Navbar variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} staff={staff} setStaff={setStaff}/>
+            <Navbar variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} staff={staff} setStaff={setStaff} admin={admin} setAdmin={setAdmin}/>
             <div className="container d-flex align-self-stretch" style={containerStyles}>
               <RouterConfig  variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} staff={staff} setStaff={setStaff} admin={admin} setAdmin={setAdmin}/>
             </div>

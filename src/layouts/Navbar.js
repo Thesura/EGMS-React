@@ -1,8 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff }) {
+function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin}) {
 
-  const theme = staff? "success" : "primary";
+  const theme = staff && loggedIn? "success" : "primary";
+  const navigate = useNavigate();
+
+  const handleLog = (event) => {
+    if(loggedIn){
+      setAdmin(0);
+      setStaff(false);
+      setLoggedIn(false);
+      setVariable("");
+      navigate("/");
+    }else{
+      navigate("/login");
+    }
+  }
 
   return (
     <>
@@ -74,7 +88,7 @@ function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff 
             <a className="navbar-brand">
               {variable}
             </a>
-            <button className="btn btn-outline-light">
+            <button className="btn btn-outline-light" onClick={handleLog}>
               {loggedIn? "Logout" : "Login"}
             </button>
           </div>
