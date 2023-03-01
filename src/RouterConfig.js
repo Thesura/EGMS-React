@@ -7,6 +7,7 @@ import Report from "./pages/Report";
 import Status from "./pages/Status";
 import Schedule from "./pages/Schedule";
 import AuthGuard from "./AuthGuard";
+import CreateSchedule from "./pages/CreateSchedule";
 
 function RouterConfig({ variable, setVariable , loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin}){
     return (
@@ -17,7 +18,8 @@ function RouterConfig({ variable, setVariable , loggedIn, setLoggedIn, staff, se
           <Route path="register" element={<Register/>}></Route>
           <Route path="report" element={<AuthGuard auth={loggedIn}><Report/></AuthGuard>}></Route>
           <Route path="status" element={<AuthGuard auth={loggedIn}><Status/></AuthGuard>}></Route>
-          <Route path="schedule" element={<AuthGuard auth={loggedIn}><Schedule/></AuthGuard>}></Route>
+          <Route path="schedule" element={<AuthGuard auth={loggedIn}><Schedule staff={staff}/></AuthGuard>}></Route>
+          <Route path="createschedule" element={<AuthGuard auth={staff}><CreateSchedule/></AuthGuard>}></Route>
         </Routes>
     );
 }

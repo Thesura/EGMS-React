@@ -8,7 +8,7 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
-${Breakpoints("width", "%", [{ 992: 100 }], "min-width")}Card
+${Breakpoints("width", "%", [{ 992: 100 }], "min-width")}
 `
 
 function Home({staff, setStaff, admin, setAdmin}) {
@@ -74,11 +74,11 @@ function Home({staff, setStaff, admin, setAdmin}) {
           <div className="card-header">
             <h5 className="card-title">Status</h5>
           </div>
-          <div className="card-body">
+          <div className="card-body d-flex flex-column my-3">
             <p className="card-text">
               View the status of electricity availability of each area.
             </p>
-            <Link to="/status" className="btn btn-outline-light btn-lg mt-5">
+            <Link to="/status" className="btn btn-outline-light btn-lg mt-auto">
               Status
             </Link>
           </div>
@@ -88,9 +88,9 @@ function Home({staff, setStaff, admin, setAdmin}) {
           <div className="card-header">
             <h5 className="card-title">Report</h5>
           </div>
-          <div className="card-body">
+          <div className="card-body d-flex flex-column my-3">
             <p className="card-text">Report a power outage.</p>
-            <Link to="/report" className="btn btn-outline-light btn-lg mt-5">
+            <Link to="/report" className="btn btn-outline-light btn-lg mt-auto">
               Report
             </Link>
           </div>
@@ -100,9 +100,9 @@ function Home({staff, setStaff, admin, setAdmin}) {
           <div className="card-header">
             <h5 className="card-title">Schedule</h5>
           </div>
-          <div className="card-body">
+          <div className="card-body d-flex flex-column my-3">
             <p className="card-text">View the planned power interruptions.</p>
-            <Link to="/schedule" className="btn btn-outline-light btn-lg mt-5">
+            <Link to="/schedule" className="btn btn-outline-light btn-lg mt-auto">
               Schedule
             </Link>
           </div>
