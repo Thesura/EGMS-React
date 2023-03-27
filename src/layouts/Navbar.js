@@ -8,6 +8,7 @@ function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff,
 
   const handleLog = (event) => {
     if(loggedIn){
+      localStorage.removeItem('token');
       setAdmin(0);
       setStaff(false);
       setLoggedIn(false);
