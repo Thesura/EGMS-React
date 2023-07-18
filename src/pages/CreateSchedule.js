@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import FetchRequest from "../FetchRequest";
-import { Link } from "react-router-dom";
 
 
 function CreateSchedule(){
-    
-    const navigate = useNavigate();
-
     const [area, setArea] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
@@ -33,8 +28,6 @@ function CreateSchedule(){
   
     const handleSubmit = (event) => {
       event.preventDefault();
-
-        // alert(`Name: ${username}, Pass: ${password}, repeat: ${repeat}, phone: ${phone}, email: ${email}`);
         let data = {area: area, start: start.replace("T", " "), end: end.replace("T", " "), reason: reason};
         let url = 'http://localhost:5000/schedule';
 
@@ -43,10 +36,6 @@ function CreateSchedule(){
         console.log(response);
 
         alert('Planned Interruption entry created.');
-
-        // navigate("/login");
-     
-      
     }
   
     return (
