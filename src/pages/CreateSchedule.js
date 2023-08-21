@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FetchRequest from "../FetchRequest";
 
 
-function CreateSchedule(){
+function CreateSchedule({active,
+  setActive}){
     const [area, setArea] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [reason, setReason] = useState("");
   
+    useEffect(() => {
+      setActive("Create Schedule")
+    }, [])
+
     const handleArea = (event) => {
       setArea(event.target.value);
     }

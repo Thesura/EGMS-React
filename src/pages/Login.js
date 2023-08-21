@@ -13,6 +13,8 @@ function Login({
   setStaff,
   admin,
   setAdmin,
+  active,
+  setActive
 }) {
   const navigate = useNavigate();
 
@@ -20,6 +22,8 @@ function Login({
   const [password, setPassword] = useState("");
 
   useEffect(() => {
+    setActive("Login")
+
     let url = "http://localhost:5000/nonstaffusers/login/token";
 
     let sessionToken = localStorage.getItem("token");

@@ -8,6 +8,7 @@ function Map(
 ) {
     const apiKey = "AIzaSyBnhHptZl7Vz0XOOU5loKFKAAHukcNc6KM"
     const {isLoaded} = useLoadScript({
+        id: "google-map-script",
         googleMapsApiKey: apiKey,
     });
 

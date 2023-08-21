@@ -2,6 +2,7 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Breakpoints from "../utils/Breakpoints";
+import { useEffect } from "react";
 
 const Container = styled.div`
   
@@ -11,8 +12,14 @@ const Card = styled.div`
 ${Breakpoints("width", "%", [{ 992: 100 }], "min-width")}
 `
 
-function Home({staff, setStaff, admin, setAdmin}) {
+function Home({staff, setStaff, admin, setAdmin, active,
+  setActive}) {
   console.log(staff);
+  
+  useEffect(() => {
+    setActive("Home")
+  }, [])
+
   if (staff) {
     return (
       <Container className="d-flex flex-column flex-lg-row overflow-auto">

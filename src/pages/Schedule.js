@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FetchRequest from "../FetchRequest";
 
-function Schedule({ staff }) {
-  const [id, setID] = useState("");
-  const [area, setArea] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
-  const [reason, setReason] = useState("");
+function Schedule({ staff, active,
+  setActive }) {
   const [schedules, setSchedules] = useState();
-  const [tableBody, setTableBody] = useState("");
 
   useEffect(() => {
+    setActive("Schedule")
+
     let url = "http://localhost:5000/schedule";
 
     let response = FetchRequest(url, "GET");
@@ -38,8 +35,8 @@ function Schedule({ staff }) {
 
   return (
     <div>
-      <h1>Schedules</h1>
-      <table class="table table-bordered text-light">
+      <h1>Schedule</h1>
+      <table className="table table-bordered text-light">
         <thead>
           <tr>
             <th scope="col">Area</th>

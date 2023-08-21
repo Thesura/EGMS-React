@@ -1,4 +1,9 @@
-.map-container{
+.map-status{
     height: 100%;
+    width: 100%;
+}
+
+.map-report{
+    height: 60%;
     width: 100%;
 }

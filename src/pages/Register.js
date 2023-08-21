@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FetchRequest from "../FetchRequest";
 import { Link } from "react-router-dom";
 
 
-function Register(){
+function Register({active,
+  setActive}){
     
     const navigate = useNavigate();
 
@@ -14,6 +15,10 @@ function Register(){
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
   
+    useEffect(() => {
+      setActive("Register")
+    }, [])
+
     const handleUsername = (event) => {
       setUsername(event.target.value);
     }

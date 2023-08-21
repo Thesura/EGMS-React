@@ -1,27 +1,40 @@
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin}) {
-
-  const theme = staff && loggedIn? "success" : "primary";
+function Navbar({
+  variable,
+  setVariable,
+  loggedIn,
+  setLoggedIn,
+  staff,
+  setStaff,
+  admin,
+  setAdmin,
+  active,
+  setActive,
+}) {
+  const theme = staff && loggedIn ? "success" : "primary";
   const navigate = useNavigate();
 
   const handleLog = (event) => {
-    if(loggedIn){
-      localStorage.removeItem('token');
+    if (loggedIn) {
+      localStorage.removeItem("token");
       setAdmin(0);
       setStaff(false);
       setLoggedIn(false);
       setVariable("");
+      setActive("");
       navigate("/");
-    }else{
+    } else {
       navigate("/login");
     }
-  }
+  };
 
   return (
     <>
-      <nav className={`navbar fixed-top navbar-expand-lg navbar-dark bg-${theme}`}>
+      <nav
+        className={`navbar fixed-top navbar-expand-lg navbar-dark bg-${theme}`}
+      >
         <button
           className="navbar-toggler"
           type="button"
@@ -33,10 +46,16 @@ function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff,
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="ms-3 navbar-nav">
-            <li className="nav-item active">
+        <div
+          className="collapse navbar-collapse row"
+          id="navbarSupportedContent"
+        >
+          <ul className="ms-3 navbar-nav me-auto col">
+            <li
+              key={"home"}
+              className="nav-item"
+              style={loggedIn ? { display: "list-item" } : { display: "none" }}
+            >
               {
                 <Link className="nav-link active" to="/home">
                   Home
@@ -44,6 +63,7 @@ function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff,
               }
             </li>
             <li
+              key={"status"}
               className="nav-item"
               style={loggedIn ? { display: "list-item" } : { display: "none" }}
             >
@@ -54,6 +74,7 @@ function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff,
               }
             </li>
             <li
+              key={"report"}
               className="nav-item"
               style={loggedIn ? { display: "list-item" } : { display: "none" }}
             >
@@ -64,6 +85,7 @@ function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff,
               }
             </li>
             <li
+              key={"schedule"}
               className="nav-item"
               style={loggedIn ? { display: "list-item" } : { display: "none" }}
             >
@@ -85,12 +107,15 @@ function Navbar({ variable, setVariable, loggedIn, setLoggedIn, staff, setStaff,
                             </div>
                         </li> */}
           </ul>
-          <div className="my-2 ms-auto me-2 d-flex flex-row">
-            <a className="navbar-brand">
-              {variable}
-            </a>
+
+          <div className="d-flex justify-content-center col">
+            <h1>{active}</h1>
+          </div>
+
+          <div className="my-2 ms-auto me-3 d-flex flex-row justify-content-end col">
+            <a className="navbar-brand me-5">{variable}</a>
             <button className="btn btn-outline-light" onClick={handleLog}>
-              {loggedIn? "Logout" : "Login"}
+              {loggedIn ? "Logout" : "Login"}
             </button>
           </div>
         </div>
