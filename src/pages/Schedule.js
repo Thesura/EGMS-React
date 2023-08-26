@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FetchRequest from "../FetchRequest";
 
-function Schedule({ staff, active,
-  setActive }) {
+function Schedule({ staff, active, setActive }) {
   const [schedules, setSchedules] = useState();
 
   useEffect(() => {
-    setActive("Schedule")
+    setActive("Schedule");
 
-    let url = "http://localhost:5000/schedule";
+    const url = "http://localhost:5000/schedule";
 
-    let response = FetchRequest(url, "GET");
+    const response = FetchRequest(url, "GET");
 
     response.then((value) => {
       setSchedules(value.schedules);
@@ -46,14 +45,17 @@ function Schedule({ staff, active,
           </tr>
         </thead>
         <tbody>
-          {schedules && schedules.map((schedule) => {return(
-            <tr>
-              <td>{schedule.area}</td>
-              <td>{schedule.start.replace("T", " ")}</td>
-              <td>{schedule.end.replace("T", " ")}</td>
-              <td>{schedule.reason}</td>
-            </tr>
-          )})}
+          {schedules &&
+            schedules.map((schedule) => {
+              return (
+                <tr>
+                  <td>{schedule.area}</td>
+                  <td>{schedule.start.replace("T", " ")}</td>
+                  <td>{schedule.end.replace("T", " ")}</td>
+                  <td>{schedule.reason}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
       <div style={staff ? { display: "Flex" } : { display: "none" }}>

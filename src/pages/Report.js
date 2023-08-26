@@ -16,9 +16,9 @@ function Report({ active, setActive }) {
   useEffect(() => {
     setActive("Report");
 
-    let url = "http://localhost:5000/status/areas";
+    const url = "http://localhost:5000/status/areas";
 
-    let response = FetchRequest(url, "GET");
+    const response = FetchRequest(url, "GET");
 
     response.then((value) => {
       console.log(value);
@@ -32,7 +32,7 @@ function Report({ active, setActive }) {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: apiKey,
-    libraries: libraries,
+    libraries,
   });
 
   const polyOptGreen = {
@@ -61,7 +61,7 @@ function Report({ active, setActive }) {
   const select = (event) => {
     setSelected(event.target.value);
     console.log(event.target.value);
-  }
+  };
 
   return (
     <div style={{ width: "100%", height: "100%" }}>
@@ -97,13 +97,19 @@ function Report({ active, setActive }) {
       )}
       <form className="mt-5">
         <div className="mb-3 form-check form-switch">
-          <select class="form-select" aria-label="Area selection" value={selected} onChange={select}>
-            <option value="" selected>Select your area</option>
-            {areas && areas.map((area) => {
-              return (
-                <option value={area.name} >{area.name}</option>
-              )
-            })}
+          <select
+            class="form-select"
+            aria-label="Area selection"
+            value={selected}
+            onChange={select}
+          >
+            <option value="" selected>
+              Select your area
+            </option>
+            {areas &&
+              areas.map((area) => {
+                return <option value={area.name}>{area.name}</option>;
+              })}
           </select>
         </div>
         <div className="mb-3">

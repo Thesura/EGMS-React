@@ -9,18 +9,18 @@ import { useEffect, useState } from "react";
 import FetchRequest from "../FetchRequest";
 
 function Status({ active, setActive }) {
-    const [areas, setAreas] = useState();
+  const [areas, setAreas] = useState();
 
   useEffect(() => {
     setActive("Status");
 
-    let url = "http://localhost:5000/status/areas";
+    const url = "http://localhost:5000/status/areas";
 
-    let response = FetchRequest(url, "GET");
+    const response = FetchRequest(url, "GET");
 
     response.then((value) => {
       console.log(value);
-      setAreas(value.areas)
+      setAreas(value.areas);
     });
   }, []);
 
@@ -30,9 +30,9 @@ function Status({ active, setActive }) {
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: apiKey,
-    libraries: libraries
+    libraries,
   });
-  
+
   const polyOptGreen = {
     strokeColor: "#097501",
     strokeOpacity: 0.5,
@@ -65,23 +65,25 @@ function Status({ active, setActive }) {
           center={{ lat: 6.841446, lng: 80.003519 }}
           zoom={13}
         >
-            {areas && areas.map((area) => {
-
-                const lat = area.lat.split(",");
-                const lng = area.lng.split(",");
-                const coords = []
-                lat.forEach((lat, index) => {
-                    coords.push({ lat: parseFloat(lat), lng: parseFloat(lng[index]) })
+          {areas &&
+            areas.map((area) => {
+              const lat = area.lat.split(",");
+              const lng = area.lng.split(",");
+              const coords = [];
+              lat.forEach((lat, index) => {
+                coords.push({
+                  lat: parseFloat(lat),
+                  lng: parseFloat(lng[index]),
                 });
-                
-                return(
-                <Polygon
-                paths={coords}
-                options={area.powered? polyOptGreen: polyOptRed}
-                onClick={polyClick(area.name)}
-              />
-            )
+              });
 
+              return (
+                <Polygon
+                  paths={coords}
+                  options={area.powered ? polyOptGreen : polyOptRed}
+                  onClick={polyClick(area.name)}
+                />
+              );
             })}
         </GoogleMap>
       )}

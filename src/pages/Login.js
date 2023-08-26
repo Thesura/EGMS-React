@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import FetchRequest from "../FetchRequest";
-import { Link } from "react-router-dom";
+
 import "./Login.css";
 
 function Login({
@@ -14,7 +14,7 @@ function Login({
   admin,
   setAdmin,
   active,
-  setActive
+  setActive,
 }) {
   const navigate = useNavigate();
 
@@ -22,18 +22,18 @@ function Login({
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    setActive("Login")
+    setActive("Login");
 
-    let url = "http://localhost:5000/nonstaffusers/login/token";
+    const url = "http://localhost:5000/nonstaffusers/login/token";
 
-    let sessionToken = localStorage.getItem("token");
+    const sessionToken = localStorage.getItem("token");
 
     console.log(sessionToken);
 
     if (sessionToken != null) {
-      let data = { token: sessionToken };
+      const data = { token: sessionToken };
 
-      let response = FetchRequest(url, "POST", data);
+      const response = FetchRequest(url, "POST", data);
 
       response.then((value) => {
         if (value.auth) {
@@ -63,12 +63,12 @@ function Login({
     event.preventDefault();
 
     console.log(username);
-    let data = { username: username, password: password };
-    let url = `http://localhost:5000/${
+    const data = { username, password };
+    const url = `http://localhost:5000/${
       staff ? "staffusers" : "nonstaffusers"
     }/login`;
 
-    let response = FetchRequest(url, "POST", data);
+    const response = FetchRequest(url, "POST", data);
 
     response.then((value) => {
       if (value.auth) {

@@ -4,21 +4,18 @@ import styled from "styled-components";
 import Breakpoints from "../utils/Breakpoints";
 import { useEffect } from "react";
 
-const Container = styled.div`
-  
-`;
+const Container = styled.div``;
 
 const Card = styled.div`
-${Breakpoints("width", "%", [{ 992: 100 }], "min-width")}
-`
+  ${Breakpoints("width", "%", [{ 992: 100 }], "min-width")}
+`;
 
-function Home({staff, setStaff, admin, setAdmin, active,
-  setActive}) {
+function Home({ staff, setStaff, admin, setAdmin, active, setActive }) {
   console.log(staff);
-  
+
   useEffect(() => {
-    setActive("Home")
-  }, [])
+    setActive("Home");
+  }, []);
 
   if (staff) {
     return (
@@ -54,19 +51,28 @@ function Home({staff, setStaff, admin, setAdmin, active,
             <h5 className="card-title">Create Schedule</h5>
           </div>
           <div className="card-body d-flex flex-column my-3">
-            <p className="card-text">Create planned power interruption shcedule entries.</p>
-            <Link to="/schedule" className="btn btn-outline-light btn-lg mt-auto">
+            <p className="card-text">
+              Create planned power interruption shcedule entries.
+            </p>
+            <Link
+              to="/schedule"
+              className="btn btn-outline-light btn-lg mt-auto"
+            >
               Schedule
             </Link>
           </div>
         </Card>
 
-        <Card className={`card text-bg-success mt-3 mx-5 ${!admin ? "d-none" : ""}`}>
+        <Card
+          className={`card text-bg-success mt-3 mx-5 ${!admin ? "d-none" : ""}`}
+        >
           <div className="card-header">
             <h5 className="card-title">User Management</h5>
           </div>
           <div className="card-body d-flex flex-column my-3">
-            <p className="card-text">Manage current users and create new users.</p>
+            <p className="card-text">
+              Manage current users and create new users.
+            </p>
             <Link to="/report" className="btn btn-outline-light btn-lg mt-auto">
               Manage
             </Link>
@@ -103,13 +109,16 @@ function Home({staff, setStaff, admin, setAdmin, active,
           </div>
         </Card>
 
-        <Card className="card text-bg-primary mt-3 mx-5" >
+        <Card className="card text-bg-primary mt-3 mx-5">
           <div className="card-header">
             <h5 className="card-title">Schedule</h5>
           </div>
           <div className="card-body d-flex flex-column my-3">
             <p className="card-text">View the planned power interruptions.</p>
-            <Link to="/schedule" className="btn btn-outline-light btn-lg mt-auto">
+            <Link
+              to="/schedule"
+              className="btn btn-outline-light btn-lg mt-auto"
+            >
               Schedule
             </Link>
           </div>

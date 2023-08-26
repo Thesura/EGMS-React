@@ -1,28 +1,22 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Breakpoints from "../utils/Breakpoints";
-import { useEffect } from "react";
 
 const Container = styled.div`
   padding: 5rem;
   width: 30%;
 
-  
   ${Breakpoints(
     "width",
     "%",
     [{ 1400: 35 }, { 1200: 40 }, { 992: 55 }, { 768: 70 }, { 576: 80 }],
-    "max-width"
+    "max-width",
   )}
 
   ${Breakpoints("width", "%", [{ 1400: 30 }], "min-width")}
 `;
 
-
 function Landing() {
-  const type = "success";
-
-
   return (
     <Container className="border border-3 border-primary rounded d-flex align-items-center flex-column align-self-center my-auto">
       <h1 className="pb-5">Welcome!</h1>
