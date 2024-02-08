@@ -10,7 +10,7 @@ const Container = styled.div`
     "width",
     "%",
     [{ 1400: 35 }, { 1200: 40 }, { 992: 55 }, { 768: 70 }, { 576: 80 }],
-    "max-width",
+    "max-width"
   )}
 
   ${Breakpoints("width", "%", [{ 1400: 30 }], "min-width")}

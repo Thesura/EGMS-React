@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
-import FetchRequest from "../FetchRequest";
+import React, { useState, useEffect, useContext } from "react";
+import FetchRequest from "../utils/FetchRequest";
+import { AuthContext } from "../App";
 
-function CreateSchedule({ active, setActive }) {
+function CreateSchedule() {
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+
   const [area, setArea] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");

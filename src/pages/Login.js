@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import FetchRequest from "../FetchRequest";
+import FetchRequest from "../utils/FetchRequest";
 
 import "./Login.css";
+import { AuthContext } from "../App";
 
-function Login({
-  variable,
-  setVariable,
-  loggedIn,
-  setLoggedIn,
-  staff,
-  setStaff,
-  admin,
-  setAdmin,
-  active,
-  setActive,
-}) {
+function Login() {
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");

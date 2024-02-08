@@ -2,7 +2,8 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Breakpoints from "../utils/Breakpoints";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../App";
 
 const Container = styled.div``;
 
@@ -10,8 +11,8 @@ const Card = styled.div`
   ${Breakpoints("width", "%", [{ 992: 100 }], "min-width")}
 `;
 
-function Home({ staff, setStaff, admin, setAdmin, active, setActive }) {
-  console.log(staff);
+function Home() {
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
 
   useEffect(() => {
     setActive("Home");

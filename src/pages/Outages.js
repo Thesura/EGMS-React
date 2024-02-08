@@ -1,6 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../App";
 
-function Outages({ active, setActive }) {
+function Outages() {
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+
   useEffect(() => {
     setActive("Outages");
   }, []);

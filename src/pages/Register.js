@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import FetchRequest from "../FetchRequest";
+import FetchRequest from "../utils/FetchRequest";
+import { AuthContext } from "../App";
 
-function Register({ active, setActive }) {
+function Register() {
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -52,7 +55,7 @@ function Register({ active, setActive }) {
       navigate("/login");
     } else {
       alert(
-        `Password and repeat password does not match. Password: ${password}, Repeat Password: ${repeat}`,
+        `Password and repeat password does not match. Password: ${password}, Repeat Password: ${repeat}`
       );
     }
   };

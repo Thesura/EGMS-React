@@ -1,13 +1,14 @@
 import "./App.css";
 import RouterConfig from "./RouterConfig";
 import { BrowserRouter as Router } from "react-router-dom";
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import Navbar from "./layouts/Navbar";
 import ErrorBoundary from "./utils/ErrorBoundary";
-// export const VarContext = React.createContext(null);
+
+export const AuthContext = createContext();
 
 function App() {
-  const [variable, setVariable] = useState("");
+  const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [staff, setStaff] = useState(false);
   const [admin, setAdmin] = useState(0);
@@ -20,12 +21,14 @@ function App() {
   return (
     <>     
           <Router>
-            <Navbar variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} staff={staff} setStaff={setStaff} admin={admin} setAdmin={setAdmin} active={active} setActive={setActive}/>
-            <ErrorBoundary>
-            <div className="container d-flex align-self-stretch" style={containerStyles}>
-              <RouterConfig  variable={variable} setVariable={setVariable} loggedIn= {loggedIn} setLoggedIn={setLoggedIn} staff={staff} setStaff={setStaff} admin={admin} setAdmin={setAdmin} active={active} setActive={setActive}/>
-            </div>
-            </ErrorBoundary>
+            <AuthContext.Provider value={[user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive]}>
+              <Navbar/>
+              <ErrorBoundary>
+                <div className="container d-flex align-self-stretch" style={containerStyles}>
+                  <RouterConfig/>
+                </div>
+              </ErrorBoundary> 
+            </AuthContext.Provider>
           </Router>
     </>
   );

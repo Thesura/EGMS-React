@@ -5,10 +5,13 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import "../styles/Map.css";
-import { useEffect, useState } from "react";
-import FetchRequest from "../FetchRequest";
+import { useContext, useEffect, useState } from "react";
+import FetchRequest from "../utils/FetchRequest";
+import { AuthContext } from "../App";
 
-function Status({ active, setActive }) {
+function Status() {
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+
   const [areas, setAreas] = useState();
 
   useEffect(() => {

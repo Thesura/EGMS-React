@@ -1,18 +1,22 @@
+import { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../App";
 
-function Navbar({
-  variable,
-  setVariable,
-  loggedIn,
-  setLoggedIn,
-  staff,
-  setStaff,
-  admin,
-  setAdmin,
-  active,
-  setActive,
-}) {
+function Navbar() {
+  const [
+    variable, 
+    setVariable, 
+    loggedIn,
+    setLoggedIn,
+    staff,
+    setStaff,
+    admin,
+    setAdmin,
+    active,
+    setActive
+  ] = useContext(AuthContext);
+
   const theme = staff && loggedIn ? "success" : "primary";
   const navigate = useNavigate();
 
