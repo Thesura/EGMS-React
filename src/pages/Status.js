@@ -7,10 +7,10 @@ import {
 import "../styles/Map.css";
 import { useContext, useEffect, useState } from "react";
 import FetchRequest from "../utils/FetchRequest";
-import { AuthContext } from "../App";
+import { ActiveContext } from "../App";
 
 function Status() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+  const [active, setActive] = useContext(ActiveContext);
 
   const [areas, setAreas] = useState();
 

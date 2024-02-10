@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FetchRequest from "../utils/FetchRequest";
-import { AuthContext } from "../App";
+import { ActiveContext, AuthContext } from "../App";
 
 function Schedule() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
+  const [active, setActive] = useContext(ActiveContext);
 
   const [schedules, setSchedules] = useState();
 

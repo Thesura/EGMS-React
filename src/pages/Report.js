@@ -8,10 +8,10 @@ import "../styles/Map.css";
 import { useContext, useEffect, useState } from "react";
 import FetchRequest from "../utils/FetchRequest";
 import { event } from "jquery";
-import { AuthContext } from "../App";
+import { ActiveContext } from "../App";
 
 function Report() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+  const [active, setActive] = useContext(ActiveContext);
 
   const [areas, setAreas] = useState();
   const [selected, setSelected] = useState("");

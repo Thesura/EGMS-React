@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Breakpoints from "../utils/Breakpoints";
 import { useContext, useEffect } from "react";
-import { AuthContext } from "../App";
+import { ActiveContext, AuthContext } from "../App";
 
 const Container = styled.div``;
 
@@ -12,7 +12,8 @@ const Card = styled.div`
 `;
 
 function Home() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
+  const [active, setActive] = useContext(ActiveContext);
 
   useEffect(() => {
     setActive("Home");

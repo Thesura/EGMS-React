@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import FetchRequest from "../utils/FetchRequest";
-import { AuthContext } from "../App";
+import { ActiveContext } from "../App";
 
 function Register() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext);
+  const [active, setActive] = useContext(ActiveContext);
 
   const navigate = useNavigate();
 
