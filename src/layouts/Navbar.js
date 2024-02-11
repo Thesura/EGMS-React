@@ -5,8 +5,8 @@ import { AuthContext } from "../App";
 
 function Navbar() {
   const [
-    variable, 
-    setVariable, 
+    user, 
+    setUser, 
     loggedIn,
     setLoggedIn,
     staff,
@@ -26,7 +26,7 @@ function Navbar() {
       setAdmin(0);
       setStaff(false);
       setLoggedIn(false);
-      setVariable("");
+      setUser("");
       setActive("");
       navigate("/");
     } else {
@@ -117,7 +117,7 @@ function Navbar() {
           </div>
 
           <div className="my-2 ms-auto me-3 d-flex flex-row justify-content-end col">
-            <a className="navbar-brand me-5">{variable}</a>
+            <a className="navbar-brand me-5">{user}</a>
             <button className="btn btn-outline-light" onClick={handleLog}>
               {loggedIn ? "Logout" : "Login"}
             </button>

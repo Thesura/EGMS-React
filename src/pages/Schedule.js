@@ -4,7 +4,7 @@ import FetchRequest from "../utils/FetchRequest";
 import { ActiveContext, AuthContext } from "../App";
 
 function Schedule() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
+  const [user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
   const [active, setActive] = useContext(ActiveContext);
 
   const [schedules, setSchedules] = useState();

@@ -12,7 +12,7 @@ const Card = styled.div`
 `;
 
 function Home() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
+  const [user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
   const [active, setActive] = useContext(ActiveContext);
 
   useEffect(() => {

@@ -10,10 +10,11 @@ import AuthGuard from "./utils/AuthGuard";
 import CreateSchedule from "./pages/CreateSchedule";
 import { useContext } from "react";
 import { AuthContext } from "./App";
+import UserManagement from "./pages/UserManagement";
 
 function RouterConfig(){
 
-  const [user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin, active, setActive] = useContext(AuthContext)
+  const [user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext)
 
     return (
         <Routes>
@@ -25,6 +26,7 @@ function RouterConfig(){
           <Route path="status" element={<AuthGuard auth={loggedIn}><Status/></AuthGuard>}></Route>
           <Route path="schedule" element={<AuthGuard auth={loggedIn}><Schedule/></AuthGuard>}></Route>
           <Route path="createschedule" element={<AuthGuard auth={staff}><CreateSchedule/></AuthGuard>}></Route>
+          <Route path="user" element={<UserManagement/>}></Route>
         </Routes>
     );
 }

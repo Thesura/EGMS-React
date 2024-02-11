@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import FetchRequest from "../utils/FetchRequest";
-
-import "./Login.css";
 import { ActiveContext, AuthContext } from "../App";
 
 function Login() {
-  const [variable, setVariable, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
+  const [user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
   const [active, setActive] = useContext(ActiveContext);
 
   const navigate = useNavigate();
@@ -30,7 +28,7 @@ function Login() {
 
       response.then((value) => {
         if (value.auth) {
-          setVariable(value.user);
+          setUser(value.user);
           setLoggedIn(true);
           setAdmin(value.admin);
           navigate("/home");
@@ -65,7 +63,7 @@ function Login() {
 
     response.then((value) => {
       if (value.auth) {
-        setVariable(username);
+        setUser(username);
         setLoggedIn(true);
         setAdmin(value.admin);
         localStorage.setItem("token", value.token);
