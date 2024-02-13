@@ -77,7 +77,7 @@ function Login() {
 
   return (
     <div className="mt-5">
-      <form>
+      <form className="justify-center content-center">
         <div className="mb-3 form-floating text-body">
           <input
             type="text"
@@ -100,7 +100,7 @@ function Login() {
           />
           <label htmlFor="password">Password</label>
         </div>
-        <div className="mb-3 form-check form-switch">
+        <div className="mb-1 form-check form-switch">
           <input
             type="checkbox"
             role="switch"
@@ -113,15 +113,15 @@ function Login() {
             Staff Member
           </label>
         </div>
-        <div className="mb-3">
-          <button className="btn btn-primary" onClick={handleSubmit}>
+        <div className=" flex justify-center">
+          <button className="button button-sky" onClick={handleSubmit}>
             Submit
           </button>
         </div>
       </form>
-      <div className="mt-5">
+      <div className="mt-3">
         <p className="mb-1">Don't have an account?</p>
-        <Link className="link-info text-decoration-none " to="/register">
+        <Link className="text-decoration-none text-sky-300" to="/register">
           Register
         </Link>
       </div>

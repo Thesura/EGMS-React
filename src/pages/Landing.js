@@ -18,13 +18,12 @@ const Container = styled.div`
 
 function Landing() {
   return (
-    <Container className="border border-3 border-primary rounded d-flex align-items-center flex-column align-self-center my-auto">
-      <h1 className="pb-5">Welcome!</h1>
-      <div className="d-grid g-col-6">
-        <Link className="btn btn-primary btn-lg px-5" to="/login">
+    <Container className="justify-center align-center">
+      <div className="">
+        <Link className="button button-sky" to="/login">
           Login
         </Link>
-        <Link className="mt-4 btn btn-primary btn-lg px-5" to="/register">
+        <Link className="button button-sky" to="/register">
           Register
         </Link>
       </div>

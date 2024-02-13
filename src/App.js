@@ -13,7 +13,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [staff, setStaff] = useState(false);
   const [admin, setAdmin] = useState(0);
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState("Welcome");
 
   const containerStyles = {
     "paddingTop" : "5rem"
