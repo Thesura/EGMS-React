@@ -113,7 +113,7 @@ function Login() {
             Staff Member
           </label>
         </div>
-        <div className=" flex justify-center">
+        <div className="flex justify-center">
           <button className="button button-sky" onClick={handleSubmit}>
             Submit
           </button>

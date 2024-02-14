@@ -117,15 +117,15 @@ function Register() {
           />
           <label htmlFor="email">Email</label>
         </div>
-        <div className="mb-3">
-          <button className="btn btn-primary" onClick={handleSubmit}>
+        <div className="flex justify-center">
+          <button className="button button-sky" onClick={handleSubmit}>
             Submit
           </button>
         </div>
       </form>
-      <div className="mt-5">
-        <p className="mb-1">Already have an account?</p>
-        <Link className="link-info text-decoration-none " to="/login">
+      <div className="">
+        <p className="">Already have an account?</p>
+        <Link className="text-sky-300 text-decoration-none " to="/login">
           Login
         </Link>
       </div>
