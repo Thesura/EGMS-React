@@ -176,9 +176,9 @@ function Navbar() {
       <div className={`nav-current ${theme?'nav-current-emerald':'nav-current-sky'} scale-0 md:scale-100 md:w-100 transition-all duration-150 ease-linear`}>
         <p className="text-center">{active}</p>
       </div>
-      <div className="nav-user">
+      <div className="nav-user me-3">
         <p className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} h-full`}>{user}</p>
-        <button className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} h-full`} onClick={handleLog}>
+        <button className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} h-full`} style={active === "Login"? {display: "none"}:{display: "flex"}} onClick={handleLog}>
               {loggedIn ? "Logout" : "Login"}
             </button>
       </div>

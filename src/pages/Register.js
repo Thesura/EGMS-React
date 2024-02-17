@@ -63,59 +63,59 @@ function Register() {
   return (
     <div className="mt-5">
       <form>
-        <div className="mb-3 form-floating text-body">
+        <div className="mb-3">
           <input
             type="text"
-            className="form-control"
+            className="text-input"
             id="username"
             placeholder="Username"
             onChange={handleUsername}
             required
           />
-          <label htmlFor="username">Username</label>
+          {/* <label htmlFor="username">Username</label> */}
         </div>
-        <div className="mb-3 form-floating text-body">
+        <div className="mb-3 text-body">
           <input
             type="password"
-            className="form-control"
+            className="text-input"
             id="password"
             placeholder="Password"
             onChange={handlePassword}
             required
           />
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label> */}
         </div>
-        <div className="mb-3 form-floating text-body">
+        <div className="mb-3 text-body">
           <input
             type="password"
-            className="form-control"
+            className="text-input"
             id="repeatPassword"
             placeholder="Repeat Password"
             onChange={handleRepeat}
             required
           />
-          <label htmlFor="repeatPassword">Repeat Password</label>
+          {/* <label htmlFor="repeatPassword">Repeat Password</label> */}
         </div>
-        <div className="mb-3 form-floating text-body">
+        <div className="mb-3 text-body">
           <input
             type="tel"
-            className="form-control"
+            className="text-input"
             id="phone"
             placeholder="Phone"
             onChange={handlePhone}
           />
-          <label htmlFor="phone">Phone</label>
+          {/* <label htmlFor="phone">Phone</label> */}
         </div>
-        <div className="mb-3 form-floating text-body">
+        <div className="mb-3 text-body">
           <input
             type="email"
-            className="form-control"
+            className="text-input"
             id="email"
             placeholder="Email"
             onChange={handleEmail}
             required
           />
-          <label htmlFor="email">Email</label>
+          {/* <label htmlFor="email">Email</label> */}
         </div>
         <div className="flex justify-center">
           <button className="button button-sky" onClick={handleSubmit}>
