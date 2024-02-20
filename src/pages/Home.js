@@ -84,42 +84,42 @@ function Home() {
     );
   } else {
     return (
-      <Container className="d-flex flex-column flex-lg-row overflow-auto">
-        <Card className="card text-bg-primary mt-3 mx-5">
-          <div className="card-header">
-            <h5 className="card-title">Status</h5>
+      <Container className="flex flex-col lg:flex-row h-5/6 lg:h-2/5 ">
+        <Card className="menu-card menu-card-sky mt-3 mx-5">
+          <div className="menu-card-header menu-card-header-sky">
+            <p className="menu-card-title">Status</p>
           </div>
-          <div className="card-body d-flex flex-column my-3">
-            <p className="card-text">
+          <div className="flex flex-col h-3/4">
+            <p className="menu-card-text">
               View the status of electricity availability of each area.
             </p>
-            <Link to="/status" className="btn btn-outline-light btn-lg mt-auto">
+            <Link to="/status" className="button button-sky mx-5 lg:mb-4 h-1/3">
               Status
             </Link>
           </div>
         </Card>
 
-        <Card className="card text-bg-primary mt-3 mx-5">
-          <div className="card-header">
-            <h5 className="card-title">Report</h5>
+        <Card className="menu-card menu-card-sky mt-3 mx-5">
+          <div className="menu-card-header menu-card-header-sky">
+            <h5 className="menu-card-title">Report</h5>
           </div>
-          <div className="card-body d-flex flex-column my-3">
-            <p className="card-text">Report a power outage.</p>
-            <Link to="/report" className="btn btn-outline-light btn-lg mt-auto">
+          <div className="flex flex-col h-3/4">
+            <p className="menu-card-text">Report a power outage.</p>
+            <Link to="/report" className="button button-sky mx-5 lg:mb-4 h-1/3">
               Report
             </Link>
           </div>
         </Card>
 
-        <Card className="card text-bg-primary mt-3 mx-5">
-          <div className="card-header">
-            <h5 className="card-title">Schedule</h5>
+        <Card className="menu-card menu-card-sky mt-3 mx-5">
+          <div className="menu-card-header menu-card-header-sky">
+            <h5 className="menu-card-title">Schedule</h5>
           </div>
-          <div className="card-body d-flex flex-column my-3">
-            <p className="card-text">View the planned power interruptions.</p>
+          <div className="flex flex-col h-3/4">
+            <p className="menu-card-text">View the planned power interruptions.</p>
             <Link
               to="/schedule"
-              className="btn btn-outline-light btn-lg mt-auto"
+              className="button button-sky mx-5 lg:mb-4 h-1/3"
             >
               Schedule
             </Link>
