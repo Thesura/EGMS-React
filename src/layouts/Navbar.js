@@ -5,36 +5,35 @@ import { ActiveContext, AuthContext } from "../App";
 
 function Navbar() {
   const [
-    user, 
-    setUser, 
+    user,
+    setUser,
     loggedIn,
     setLoggedIn,
     staff,
     setStaff,
     admin,
-    setAdmin
+    setAdmin,
   ] = useContext(AuthContext);
 
   const [active, setActive] = useContext(ActiveContext);
 
-  const [toggled, setToggled] = useState(false)
+  const [toggled, setToggled] = useState(false);
 
-  const [theme, setTheme] = useState(false)
+  const [theme, setTheme] = useState(false);
 
-  const navToggle = () =>{
-      setToggled(!toggled)
-  }
+  const navToggle = () => {
+    setToggled(!toggled);
+  };
 
   useEffect(() => {
-    if(loggedIn && staff)
-      setTheme(true)
+    if (loggedIn && staff) setTheme(true);
 
-    if(theme){
-      document.body.classList.remove('bg-sky-950')
-      document.body.classList.add('bg-emerald-950')
-    }else{
-      document.body.classList.remove('bg-emerald-950')
-      document.body.classList.add('bg-sky-950')
+    if (theme) {
+      document.body.classList.remove("bg-sky-950");
+      document.body.classList.add("bg-emerald-950");
+    } else {
+      document.body.classList.remove("bg-emerald-950");
+      document.body.classList.add("bg-sky-950");
     }
   }, [theme, loggedIn, staff]);
 
@@ -48,6 +47,7 @@ function Navbar() {
       setLoggedIn(false);
       setUser("");
       setActive("");
+      setTheme(false);
       navigate("/");
     } else {
       navigate("/login");
@@ -146,68 +146,155 @@ function Navbar() {
     //   </nav>
     // </>
     <>
-    <div className={`fixed top-0 w-screen h-16 flex flex-row ${theme?'bg-emerald-900':'bg-sky-900'} text-gray-300 shadow-lg grid grid-cols-3`}>
-      <div className="nav-items">
-        <div style={loggedIn ? { display: "flex" } : { display: "none" }}>
-          <p className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} flex scale-100 w-auto sm:scale-0 sm:w-0 sm:p-0 transition-all duration-150 ease-linear`} onClick={navToggle}>Menu</p>
-        <p className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}>{
+      <div
+        className={`fixed top-0 w-screen h-16 flex flex-row ${
+          theme ? "bg-emerald-900" : "bg-sky-900"
+        } text-gray-300 shadow-lg grid grid-cols-3`}
+      >
+        <div className="nav-items">
+          <div style={loggedIn ? { display: "flex" } : { display: "none" }}>
+            <p
+              className={`nav-item ${
+                theme ? "nav-item-emerald" : "nav-item-sky"
+              } flex scale-100 w-auto sm:scale-0 sm:w-0 sm:p-0 transition-all duration-150 ease-linear`}
+              onClick={navToggle}
+            >
+              Menu
+            </p>
+            <p
+              className={`nav-item ${
+                theme ? "nav-item-emerald" : "nav-item-sky"
+              } flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}
+            >
+              {
                 <Link className="nav-link active" to="/home">
                   Home
                 </Link>
-              }</p>
-        <p className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}>{
+              }
+            </p>
+            <p
+              className={`nav-item ${
+                theme ? "nav-item-emerald" : "nav-item-sky"
+              } flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}
+            >
+              {
                 <Link className="nav-link active" to="/status">
                   Status
                 </Link>
-              }</p>
-        <p className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}>{
+              }
+            </p>
+            <p
+              className={`nav-item ${
+                theme ? "nav-item-emerald" : "nav-item-sky"
+              } flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}
+            >
+              {
                 <Link className="nav-link active" to="/report">
                   Report
                 </Link>
-              }</p>
-        <p className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}>{
+              }
+            </p>
+            <p
+              className={`nav-item ${
+                theme ? "nav-item-emerald" : "nav-item-sky"
+              } flex scale-0 w-0 sm:scale-100 sm:w-auto transition-all duration-150 ease-linear`}
+            >
+              {
                 <Link className="nav-link active" to="/schedule">
                   Schedule
                 </Link>
-              }</p>
+              }
+            </p>
+          </div>
         </div>
-        
+        <div
+          className={`nav-current ${
+            theme ? "nav-current-emerald" : "nav-current-sky"
+          } scale-0 md:scale-100 md:w-100 transition-all duration-150 ease-linear`}
+        >
+          <p className="text-center">{active}</p>
+        </div>
+        <div className="nav-user me-3">
+          <p
+            className={`nav-item ${
+              theme ? "nav-item-emerald" : "nav-item-sky"
+            } h-full`}
+            style={loggedIn ? { display: "flex" } : { display: "none" }}
+          >
+            <Link className="nav-link active" to="/home">
+              {user}
+            </Link>
+          </p>
+          <button
+            className={`nav-item ${
+              theme ? "nav-item-emerald" : "nav-item-sky"
+            } h-full`}
+            style={
+              active === "Login" ? { display: "none" } : { display: "flex" }
+            }
+            onClick={handleLog}
+          >
+            {loggedIn ? "Logout" : "Login"}
+          </button>
+        </div>
       </div>
-      <div className={`nav-current ${theme?'nav-current-emerald':'nav-current-sky'} scale-0 md:scale-100 md:w-100 transition-all duration-150 ease-linear`}>
-        <p className="text-center">{active}</p>
+      <div
+        className={`${
+          toggled
+            ? "scale-100 transition-all duration-150 ease-linear"
+            : "scale-0"
+        } fixed sm:hidden top-16 w-auto ${
+          theme ? "bg-emerald-950" : "bg-sky-950"
+        } text-gray-300 shadow-lg`}
+      >
+        <div className="nav-list">
+          <p
+            className={`nav-list-item ${
+              theme ? "nav-list-item-emerald" : "nav-list-item-sky"
+            }`}
+          >
+            {
+              <Link className="nav-link active" to="/home">
+                Home
+              </Link>
+            }
+          </p>
+          <p
+            className={`nav-list-item ${
+              theme ? "nav-list-item-emerald" : "nav-list-item-sky"
+            }`}
+          >
+            {
+              <Link className="nav-link active" to="/status">
+                Status
+              </Link>
+            }
+          </p>
+          <p
+            className={`nav-list-item ${
+              theme ? "nav-list-item-emerald" : "nav-list-item-sky"
+            }`}
+          >
+            {
+              <Link className="nav-link active" to="/report">
+                Report
+              </Link>
+            }
+          </p>
+          <p
+            className={`nav-list-item ${
+              theme ? "nav-list-item-emerald" : "nav-list-item-sky"
+            }`}
+          >
+            {
+              <Link className="nav-link active" to="/schedule">
+                Schedule
+              </Link>
+            }
+          </p>
+        </div>
       </div>
-      <div className="nav-user me-3">
-        <p className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} h-full`}>{user}</p>
-        <button className={`nav-item ${theme?'nav-item-emerald':'nav-item-sky'} h-full`} style={active === "Login"? {display: "none"}:{display: "flex"}} onClick={handleLog}>
-              {loggedIn ? "Logout" : "Login"}
-            </button>
-      </div>
-    </div>
-    <div className={`${toggled?'scale-100 transition-all duration-150 ease-linear':'scale-0'} fixed sm:hidden top-16 w-auto ${theme?'bg-emerald-950':'bg-sky-950'} text-gray-300 shadow-lg`}>
-      <div className="nav-list">
-      <p className={`nav-list-item ${theme?'nav-list-item-emerald':'nav-list-item-sky'}`}>{
-                <Link className="nav-link active" to="/home">
-                  Home
-                </Link>
-              }</p>
-          <p className={`nav-list-item ${theme?'nav-list-item-emerald':'nav-list-item-sky'}`}>{
-                <Link className="nav-link active" to="/status">
-                  Status
-                </Link>
-              }</p>
-          <p className={`nav-list-item ${theme?'nav-list-item-emerald':'nav-list-item-sky'}`}>{
-                <Link className="nav-link active" to="/report">
-                  Report
-                </Link>
-              }</p>
-          <p className={`nav-list-item ${theme?'nav-list-item-emerald':'nav-list-item-sky'}`}>{
-                <Link className="nav-link active" to="/schedule">
-                  Schedule
-                </Link>
-              }</p>
-      </div>
-    </div>
-  </>
+    </>
   );
 }
 
