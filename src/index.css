@@ -67,6 +67,10 @@
       @apply p-2 bg-slate-950 text-sky-100 border-solid border rounded-lg border-sky-600 focus:border-sky-100 focus:outline-none transition-all duration-150 ease-linear;
   }
 
+  .text-input-disabled{
+    @apply p-2 bg-slate-600 text-slate-300 border-solid border rounded-lg border-slate-400 focus:outline-none;
+}
+
   .menu-card{
     @apply rounded-3xl;
   }
