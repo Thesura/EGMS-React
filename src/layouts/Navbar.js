@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"
 import { ActiveContext, AuthContext } from "../App";
 
 function Navbar() {
@@ -41,7 +42,7 @@ function Navbar() {
 
   const handleLog = (event) => {
     if (loggedIn) {
-      localStorage.removeItem("token");
+      Cookies.remove("token");
       setAdmin(0);
       setStaff(false);
       setLoggedIn(false);

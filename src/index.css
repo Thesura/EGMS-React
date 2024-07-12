@@ -79,12 +79,20 @@
     @apply bg-sky-800
   }
 
+  .menu-card-emerald{
+    @apply bg-emerald-800
+  }
+
   .menu-card-header{
     @apply flex h-1/4 rounded-t-3xl border-b;
   }
 
   .menu-card-header-sky{
     @apply bg-sky-800 border-b-sky-500;
+  }
+
+  .menu-card-header-emerald{
+    @apply bg-emerald-800 border-b-emerald-500;
   }
 
   .menu-card-title{

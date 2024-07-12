@@ -73,9 +73,16 @@ function UserManagement() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if(editPassword){
-
+      const data = { id, username, email, phone, password };
+      const url = "http://localhost:5000/nonstaffusers";
+  
+      const response = FetchRequest(url, "PUT", data);
+  
+      response.then((value) => {
+      console.log(value);
+      });
     }else{
-      const data = { id, username, email, phone };
+    const data = { id, username, email, phone };
     const url = "http://localhost:5000/nonstaffusers/nopwd";
 
     const response = FetchRequest(url, "PUT", data);
