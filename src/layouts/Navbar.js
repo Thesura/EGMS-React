@@ -222,7 +222,7 @@ function Navbar() {
             } h-full`}
             style={loggedIn ? { display: "flex" } : { display: "none" }}
           >
-            <Link className="nav-link active" to="/user">
+            <Link className="nav-link active" to="/profile">
               {user}
             </Link>
           </p>

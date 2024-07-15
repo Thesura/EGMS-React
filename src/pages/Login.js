@@ -78,6 +78,9 @@ function Login() {
         setAdmin(value.admin);
         Cookies.set("token", value.token);
         navigate("/home");
+      } else if(value.inactive){
+        console.log("inactive");
+        alert("User account is Inactive");
       } else {
         console.log("failed");
         alert("Incorrect Credentials");

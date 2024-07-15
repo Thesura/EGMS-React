@@ -19,7 +19,7 @@ export function MenuCard({cardTitle, cardText, link, linkText}) {
             <p className="menu-card-text">
               {cardText}
             </p>
-            <Link to={link} className="button button-sky mx-5 lg:mb-4 h-1/3">
+            <Link to={link} className="button button-sky mx-5 h-1/3 lg:mb-10 lg:h-1/4">
               {linkText}
             </Link>
           </div>
@@ -38,7 +38,7 @@ export function StaffMenuCard({cardTitle, cardText, link, linkText}) {
             <p className="menu-card-text">
               {cardText}
             </p>
-            <Link to={link} className="button button-emerald mx-5 lg:mb-4 h-1/3">
+            <Link to={link} className="button button-emerald mx-5 h-1/3 lg:mb-10 lg:h-1/4">
               {linkText}
             </Link>
           </div>

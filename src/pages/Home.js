@@ -26,7 +26,7 @@ function Home() {
         <StaffMenuCard cardTitle = {"Status"} cardText = {"View the status of electricity availability of each area."} link = {"/status"} linkText = {"Status"} />
         <StaffMenuCard cardTitle = {"Outage Reports"} cardText = {"View current power outage Reports."} link = {"/report"} linkText = {"Reports"} />
         <StaffMenuCard cardTitle = {"Create Schedule"} cardText = {"Create planned power interruption shcedule entries."} link = {"/schedule"} linkText = {"Schedule"} />
-        <StaffMenuCard cardTitle = {"User Management"} cardText = {"Manage current users and create new users."} link = {"/report"} linkText = {"Manage"} />
+        <StaffMenuCard cardTitle = {"User Management"} cardText = {"Manage current users and create new users."} link = {"/usermanagement"} linkText = {"Manage"} />
       </Container>
     );
   } else {
