@@ -1,0 +1,2 @@
+nav bar resizing issue.
+home page cards col sizing issue.

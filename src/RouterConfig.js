@@ -10,6 +10,7 @@ import AuthGuard from "./utils/AuthGuard";
 import CreateSchedule from "./pages/CreateSchedule";
 import { useContext } from "react";
 import { AuthContext } from "./App";
+import Profile from "./pages/profile";
 import UserManagement from "./pages/UserManagement";
 
 function RouterConfig(){
@@ -26,7 +27,8 @@ function RouterConfig(){
           <Route path="status" element={<AuthGuard auth={loggedIn}><Status/></AuthGuard>}></Route>
           <Route path="schedule" element={<AuthGuard auth={loggedIn}><Schedule/></AuthGuard>}></Route>
           <Route path="createschedule" element={<AuthGuard auth={staff}><CreateSchedule/></AuthGuard>}></Route>
-          <Route path="user" element={<UserManagement/>}></Route>
+          <Route path="usermanagement" element={<AuthGuard auth={staff}><UserManagement/></AuthGuard>}></Route>
+          <Route path="profile" element={<AuthGuard auth={loggedIn}><Profile/></AuthGuard>}></Route>
         </Routes>
     );
 }

@@ -15,6 +15,10 @@
     @apply text-sky-200 border-sky-600 hover:text-sky-100 hover:border-4 hover:border-sky-500 transition-all duration-150 ease-linear;
   }
 
+  .button-emerald{
+    @apply text-emerald-200 border-emerald-600 hover:text-emerald-100 hover:border-4 hover:border-emerald-500 transition-all duration-150 ease-linear;
+  }
+
   .nav-item-sky{
       @apply text-sky-200 hover:text-sky-100 transition-all duration-150 ease-linear;
   }
@@ -58,6 +62,58 @@
   .nav-current-emerald{
       @apply text-emerald-200;
   }
+
+  .text-input{
+      @apply p-2 bg-slate-950 text-sky-100 border-solid border rounded-lg border-sky-600 focus:border-sky-100 focus:outline-none transition-all duration-150 ease-linear;
+  }
+
+  .text-input-disabled{
+    @apply p-2 bg-slate-600 text-slate-300 border-solid border rounded-lg border-slate-400 focus:outline-none;
+}
+
+  .menu-card{
+    @apply rounded-3xl;
+  }
+
+  .menu-card-sky{
+    @apply bg-sky-800
+  }
+
+  .menu-card-emerald{
+    @apply bg-emerald-800
+  }
+
+  .menu-card-header{
+    @apply flex h-1/4 rounded-t-3xl border-b;
+  }
+
+  .menu-card-header-sky{
+    @apply bg-sky-800 border-b-sky-500;
+  }
+
+  .menu-card-header-emerald{
+    @apply bg-emerald-800 border-b-emerald-500;
+  }
+
+  .menu-card-title{
+    @apply m-auto text-2xl font-bold;
+  }
+
+  .menu-card-text{
+    @apply m-auto text-lg font-medium;
+  }
+
+  .discreet-button{
+    @apply relative flex items-center justify-center content-center px-2 h-full font-semibold text-lg font-medium transition-all duration-150 ease-linear;
+  }
+
+  .discreet-button-sky{
+    @apply text-sky-200 border-solid border-2 rounded-lg border-sky-600 hover:text-sky-100 transition-all duration-150 ease-linear;
+  }
+
+  .discreet-button-emerald{
+    @apply text-emerald-200 border-solid border-2 rounded-lg border-emerald-600 hover:text-emerald-50 transition-all duration-150 ease-linear;
+  }
 }
 
 body {
@@ -78,4 +134,3 @@ code {
 html, body, #root {
   height: 100%;
 }
-

@@ -2,9 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import FetchRequest from "../utils/FetchRequest";
 import { ActiveContext, AuthContext } from "../App";
+import Cookies from "js-cookie"
 
 function Login() {
-  const [user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin] = useContext(AuthContext);
+  const [
+    user,
+    setUser,
+    loggedIn,
+    setLoggedIn,
+    staff,
+    setStaff,
+    admin,
+    setAdmin,
+  ] = useContext(AuthContext);
   const [active, setActive] = useContext(ActiveContext);
 
   const navigate = useNavigate();
@@ -17,8 +27,7 @@ function Login() {
 
     const url = "http://localhost:5000/nonstaffusers/login/token";
 
-    const sessionToken = localStorage.getItem("token");
-
+    const sessionToken = Cookies.get("token");
     console.log(sessionToken);
 
     if (sessionToken != null) {
@@ -62,12 +71,16 @@ function Login() {
     const response = FetchRequest(url, "POST", data);
 
     response.then((value) => {
+      console.log(value);
       if (value.auth) {
         setUser(username);
         setLoggedIn(true);
         setAdmin(value.admin);
-        localStorage.setItem("token", value.token);
+        Cookies.set("token", value.token);
         navigate("/home");
+      } else if(value.inactive){
+        console.log("inactive");
+        alert("User account is Inactive");
       } else {
         console.log("failed");
         alert("Incorrect Credentials");
@@ -77,51 +90,53 @@ function Login() {
 
   return (
     <div className="mt-5">
-      <form className="justify-center content-center">
+      <form className="justify-center content-center" onSubmit={handleSubmit}>
         <div className="mb-3 form-floating text-body">
           <input
             type="text"
-            className="form-control"
+            className="text-input"
             id="username"
             placeholder="Username"
             onChange={handleUsername}
             required
           />
-          <label htmlFor="username">Username</label>
+          {/* <label htmlFor="username">Username</label> */}
         </div>
         <div className="mb-3 form-floating text-body">
           <input
             type="password"
-            className="form-control"
+            className="text-input"
             id="password"
             placeholder="Password"
             onChange={handlePassword}
             required
           />
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label> */}
         </div>
-        <div className="mb-1 form-check form-switch">
+        <label className="flex justify-center">
           <input
             type="checkbox"
-            role="switch"
-            className="form-check-input"
+            className="sr-only peer"
             id="userType"
             checked={staff}
             onChange={handleStaffCheck}
           />
-          <label htmlFor="userType" className="form-label">
-            Staff Member
-          </label>
-        </div>
-        <div className=" flex justify-center">
-          <button className="button button-sky" onClick={handleSubmit}>
+          <div
+            className="relative w-11 h-6 bg-slate-950  peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-sky-600 rounded-full peer-checked:after:translate-x-full 
+    rtl:peer-checked:after:translate-x-full peer-checked:after:border-sky-100 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-slate-950 
+    after:border-sky-600 after:border after:rounded-full after:h-5 after:w-5 peer-checked:after:bg-sky-600 after:transition-all after:duration-150 after:ease-linear"
+          ></div>
+          <pan className="mx-2">Staff Member</pan>
+        </label>
+        <div className="flex justify-center">
+          <button type="submit" className="button button-sky">
             Submit
           </button>
         </div>
       </form>
       <div className="mt-3">
         <p className="mb-1">Don't have an account?</p>
-        <Link className="text-decoration-none text-sky-300" to="/register">
+        <Link className="no-underline text-sky-300" to="/register">
           Register
         </Link>
       </div>
