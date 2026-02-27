@@ -64,9 +64,8 @@ function Login() {
 
     console.log(username);
     const data = { username, password };
-    const url = `http://localhost:5000/${
-      staff ? "staffusers" : "nonstaffusers"
-    }/login`;
+    const url = `http://localhost:5000/${staff ? "staffusers" : "nonstaffusers"
+      }/login`;
 
     const response = FetchRequest(url, "POST", data);
 
@@ -76,9 +75,9 @@ function Login() {
         setUser(username);
         setLoggedIn(true);
         setAdmin(value.admin);
-        Cookies.set("token", value.token);
+        Cookies.set("token", value.token, { expires: 1 });
         navigate("/home");
-      } else if(value.inactive){
+      } else if (value.inactive) {
         console.log("inactive");
         alert("User account is Inactive");
       } else {
