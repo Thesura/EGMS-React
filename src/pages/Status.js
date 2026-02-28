@@ -6,7 +6,7 @@ import {
 } from "@react-google-maps/api";
 import "../styles/Map.css";
 import { useContext, useEffect, useState } from "react";
-import FetchRequest from "../utils/FetchRequest";
+import { FetchRequest } from "../utils/FetchRequest";
 import { ActiveContext } from "../App";
 
 function Status() {

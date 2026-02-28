@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import FetchRequest from "../utils/FetchRequest";
+import { FetchRequest } from "../utils/FetchRequest";
 import { ActiveContext } from "../App";
 
 function Register() {

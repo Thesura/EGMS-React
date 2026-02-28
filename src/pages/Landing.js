@@ -4,7 +4,7 @@ import Breakpoints from "../utils/Breakpoints";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../App";
 import Cookies from "js-cookie";
-import FetchRequest from "../utils/FetchRequest";
+import { FetchRequestToken } from "../utils/FetchRequest";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
@@ -42,9 +42,7 @@ function Landing() {
     console.log(sessionToken);
 
     if (sessionToken != null) {
-      const data = { token: sessionToken };
-
-      const response = FetchRequest(url, "POST", data);
+      const response = FetchRequestToken(url, "POST", sessionToken);
 
       response.then((value) => {
         if (value.auth) {

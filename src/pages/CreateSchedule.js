@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import FetchRequest from "../utils/FetchRequest";
+import { FetchRequest } from "../utils/FetchRequest";
 import { ActiveContext } from "../App";
 
 function CreateSchedule() {

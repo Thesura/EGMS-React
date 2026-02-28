@@ -3,7 +3,7 @@ import { ActiveContext, AuthContext } from "../App";
 import "../styles/UserManagement.css";
 import "../styles/Map.css";
 import { Link } from "react-router-dom";
-import FetchRequest from "../utils/FetchRequest";
+import { FetchRequest } from "../utils/FetchRequest";
 import { event } from "jquery";
 
 function Profile() {
@@ -72,26 +72,26 @@ function Profile() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(editPassword){
+    if (editPassword) {
       const data = { id, username, email, phone, password };
       const url = "http://localhost:5000/nonstaffusers";
-  
+
       const response = FetchRequest(url, "PUT", data);
-  
+
       response.then((value) => {
-      console.log(value);
+        console.log(value);
       });
-    }else{
-    const data = { id, username, email, phone };
-    const url = "http://localhost:5000/nonstaffusers/nopwd";
+    } else {
+      const data = { id, username, email, phone };
+      const url = "http://localhost:5000/nonstaffusers/nopwd";
 
-    const response = FetchRequest(url, "PUT", data);
+      const response = FetchRequest(url, "PUT", data);
 
-    response.then((value) => {
-      console.log(value);
-    });
+      response.then((value) => {
+        console.log(value);
+      });
     }
-    
+
   };
 
   const handleEdit = (event) => {
@@ -169,36 +169,36 @@ function Profile() {
                   {/* <label htmlFor="email">Email</label> */}
                 </div>
                 <div className="flex justify-center" style={
-                    editPassword ? { display: "block" } : { display: "none" }
-                  }>
-                <div
-                  className="mb-3 text-body"
-                >
-                  <input
-                    type="password"
-                    className="text-input justify-center"
-                    id="password"
-                    placeholder="New Password"
-                    readOnly={readOnly}
-                    onChange={handlePassword}
-                  />
-                  {/* <label htmlFor="password">Password</label> */}
+                  editPassword ? { display: "block" } : { display: "none" }
+                }>
+                  <div
+                    className="mb-3 text-body"
+                  >
+                    <input
+                      type="password"
+                      className="text-input justify-center"
+                      id="password"
+                      placeholder="New Password"
+                      readOnly={readOnly}
+                      onChange={handlePassword}
+                    />
+                    {/* <label htmlFor="password">Password</label> */}
+                  </div>
+                  <div
+                    className="mb-3 text-body"
+                  >
+                    <input
+                      type="password"
+                      className="text-input justify-center"
+                      id="repeatPassword"
+                      placeholder="Repeat Password"
+                      readOnly={readOnly}
+                      onChange={handleRepeat}
+                    />
+                    {/* <label htmlFor="repeatPassword">Repeat Password</label> */}
+                  </div>
                 </div>
-                <div
-                  className="mb-3 text-body"
-                >
-                  <input
-                    type="password"
-                    className="text-input justify-center"
-                    id="repeatPassword"
-                    placeholder="Repeat Password"
-                    readOnly={readOnly}
-                    onChange={handleRepeat}
-                  />
-                  {/* <label htmlFor="repeatPassword">Repeat Password</label> */}
-                </div>
-                </div>
-                
+
                 <label className="flex justify-center">
                   <input
                     type="checkbox"
@@ -209,8 +209,8 @@ function Profile() {
                     onChange={handleEditPassword}
                   />
                   <div
-                    className={readOnly? "relative w-11 h-6 bg-slate-600 peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-slate-400 rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-full peer-checked:after:border-slate-400 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-slate-600 after:border-slate-400 after:border after:rounded-full after:h-5 after:w-5 peer-checked:after:bg-slate-900 after:transition-all after:duration-150 after:ease-linear" 
-                      : "relative w-11 h-6 bg-slate-950  peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-sky-600 rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-full peer-checked:after:border-sky-100 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-slate-950 after:border-sky-600 after:border after:rounded-full after:h-5 after:w-5 peer-checked:after:bg-sky-600 after:transition-all after:duration-150 after:ease-linear" }
+                    className={readOnly ? "relative w-11 h-6 bg-slate-600 peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-slate-400 rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-full peer-checked:after:border-slate-400 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-slate-600 after:border-slate-400 after:border after:rounded-full after:h-5 after:w-5 peer-checked:after:bg-slate-900 after:transition-all after:duration-150 after:ease-linear"
+                      : "relative w-11 h-6 bg-slate-950  peer peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-sky-600 rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-full peer-checked:after:border-sky-100 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-slate-950 after:border-sky-600 after:border after:rounded-full after:h-5 after:w-5 peer-checked:after:bg-sky-600 after:transition-all after:duration-150 after:ease-linear"}
                   ></div>
                   <pan className="mx-2">Update Password?</pan>
                 </label>

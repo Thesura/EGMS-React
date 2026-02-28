@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import FetchRequest from "../utils/FetchRequest";
+import { FetchRequest, FetchRequestToken } from "../utils/FetchRequest";
 import { ActiveContext, AuthContext } from "../App";
 import Cookies from "js-cookie"
 
@@ -31,9 +31,7 @@ function Login() {
     console.log(sessionToken);
 
     if (sessionToken != null) {
-      const data = { token: sessionToken };
-
-      const response = FetchRequest(url, "POST", data);
+      const response = FetchRequestToken(url, "POST", sessionToken);
 
       response.then((value) => {
         if (value.auth) {
