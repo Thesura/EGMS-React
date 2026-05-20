@@ -1,6 +1,6 @@
 import {
   GoogleMap,
-  Mark,
+  Marker,
   Polygon,
   useLoadScript,
 } from "@react-google-maps/api";
@@ -9,14 +9,13 @@ import { useContext, useEffect, useState } from "react";
 import { FetchRequest } from "../utils/FetchRequest";
 import { ActiveContext } from "../App";
 
-function Report() {
+function Status() {
   const [active, setActive] = useContext(ActiveContext);
 
   const [areas, setAreas] = useState();
-  const [selected, setSelected] = useState("");
 
   useEffect(() => {
-    setActive("Report");
+    setActive("Status");
 
     const url = "http://localhost:5000/status/areas";
 
@@ -55,14 +54,8 @@ function Report() {
 
   const polyClick = (area) => {
     return (event) => {
-      setSelected(area);
-      console.log(selected);
+      console.log(area);
     };
-  };
-
-  const select = (event) => {
-    setSelected(event.target.value);
-    console.log(event.target.value);
   };
 
   return (
@@ -71,7 +64,7 @@ function Report() {
         <h2>Loading...</h2>
       ) : (
         <GoogleMap
-          mapContainerClassName="map-report"
+          mapContainerClassName="map-status"
           center={{ lat: 6.841446, lng: 80.003519 }}
           zoom={13}
         >
@@ -97,31 +90,8 @@ function Report() {
             })}
         </GoogleMap>
       )}
-      <form className="mt-5">
-        <div className="mb-3 form-check form-switch">
-          <select
-            class="form-select"
-            aria-label="Area selection"
-            value={selected}
-            onChange={select}
-          >
-            <option value="" selected>
-              Select your area
-            </option>
-            {areas &&
-              areas.map((area) => {
-                return <option value={area.name}>{area.name}</option>;
-              })}
-          </select>
-        </div>
-        <div className="mb-3">
-          <button className="btn btn-primary" onClick={""}>
-            Report
-          </button>
-        </div>
-      </form>
     </div>
   );
 }
 
-export default Report;
+export default Status;

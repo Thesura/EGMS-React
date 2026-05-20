@@ -4,7 +4,7 @@ import "../styles/UserManagement.css";
 import "../styles/Map.css";
 import { Link } from "react-router-dom";
 import { FetchRequest } from "../utils/FetchRequest";
-import { event } from "jquery";
+import $ from "jquery";
 
 function Profile() {
   const [
