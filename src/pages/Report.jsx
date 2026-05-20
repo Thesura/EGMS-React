@@ -30,7 +30,7 @@ function Report() {
 
   const libraries = ["geometry"];
 
-  const apiKey = "AIzaSyBnhHptZl7Vz0XOOU5loKFKAAHukcNc6KM";
+  const apiKey = process.env.API_KEY;
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: apiKey,

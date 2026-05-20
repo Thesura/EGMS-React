@@ -7,6 +7,8 @@ import './index.css';
 import './styles/tailwind.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { loadEnvFile } from 'node:process';
+loadEnvFile('../.env.development.local');
 
 const container = document.getElementById('root');
 const root = createRoot(container);
