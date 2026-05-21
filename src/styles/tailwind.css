@@ -113,3 +113,17 @@
     @apply text-emerald-200 border-solid border-2 rounded-lg border-emerald-600 hover:text-emerald-50 transition-all duration-150 ease-linear;
   }
 }
+
+@layer base{
+  .link-button{
+    @apply relative flex items-center justify-center content-center mx-0 my-6 px-3 py-3 h-full font-semibold border-solid border-2 rounded-lg text-xl hover:text-2xl transition-all duration-150 ease-linear;
+  }
+
+  .link-button-sky{
+    @apply text-sky-200 border-sky-600 hover:text-sky-100 hover:border-4 hover:border-sky-500 transition-all duration-150 ease-linear;
+  }
+
+  .link-button-emerald{
+    @apply text-emerald-200 border-emerald-600 hover:text-emerald-100 hover:border-4 hover:border-emerald-500 transition-all duration-150 ease-linear;
+  }
+}

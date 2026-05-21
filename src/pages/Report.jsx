@@ -30,7 +30,7 @@ function Report() {
 
   const libraries = ["geometry"];
 
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_API_KEY;
   const { isLoaded } = useLoadScript({
     id: "google-map-script",
     googleMapsApiKey: apiKey,

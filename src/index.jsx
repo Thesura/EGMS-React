@@ -1,14 +1,12 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/js/bootstrap'
 import $ from 'jquery';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
+import './styles/index.css';
 import './styles/tailwind.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { loadEnvFile } from 'node:process';
-loadEnvFile('../.env.development.local');
 
 const container = document.getElementById('root');
 const root = createRoot(container);

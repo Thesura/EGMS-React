@@ -57,12 +57,12 @@ function Landing() {
   }, [])
 
   return (
-    <Container className="justify-center align-center">
+    <Container className="items-center justify-center">
       <div className="">
-        <Link className="button button-sky" to="/login">
+        <Link className="link-button link-button-sky" to="/login">
           Login
         </Link>
-        <Link className="button button-sky" to="/register">
+        <Link className="link-button link-button-sky" to="/register">
           Register
         </Link>
       </div>

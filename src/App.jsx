@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import RouterConfig from "./RouterConfig";
 import { BrowserRouter as Router } from "react-router-dom";
 import React, { createContext, useState } from "react";
@@ -15,18 +15,15 @@ function App() {
   const [admin, setAdmin] = useState(0);
   const [active, setActive] = useState("Welcome");
 
-  const containerStyles = {
-    "paddingTop" : "5rem"
-  }
 
   return (
     <>     
-          <Router>
+          <Router className="items-center justify-center w-screen h-screen">
             <AuthContext.Provider value={[user, setUser, loggedIn, setLoggedIn, staff, setStaff, admin, setAdmin]}>
               <ActiveContext.Provider value={[active, setActive]}>
               <Navbar/>
               <ErrorBoundary>
-                <div className="container d-flex align-self-stretch" style={containerStyles}>
+                <div className="container self-center items-center justify-center">
                   <RouterConfig/>
                 </div>
               </ErrorBoundary> 
