@@ -1,5 +1,5 @@
 
-function FetchRequest(url, method, data = {}) {
+async function FetchRequest(url, method, data = {}) {
     let request = {
         method: method,
         headers: { 'Content-Type': 'application/json' },
@@ -22,7 +22,7 @@ function FetchRequest(url, method, data = {}) {
     return response.json();
 };
 
-function FetchRequestToken(url, method, token) {
+async function FetchRequestToken(url, method, token) {
     let request = {
         method: method,
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },

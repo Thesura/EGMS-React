@@ -36,18 +36,27 @@ function Profile() {
     const data = { username: user };
     const url = "http://localhost:5000/nonstaffusers/getuser";
 
-    const response = FetchRequest(url, "POST", data);
+    try {
+      const response = await FetchRequest(url, "POST", data);
 
-    response.then((value) => {
-      console.log(value);
-      setUserObject(value.user[0]);
-      setId(value.user[0].id);
-      setUsername(value.user[0].username);
-      setEmail(value.user[0].email);
-      setPhone(value.user[0].phone);
+      console.log(response);
+      setUserObject(response.user[0]);
+      setId(response.user[0].id);
+      setUsername(response.user[0].username);
+      setEmail(response.user[0].email);
+      setPhone(response.user[0].phone);
       setLoading(false);
       console.log(id);
-    });
+    } catch (error) {
+      if (error.status === 404) {
+        console.log('Resource not found')
+      } else if (error.status >= 500) {
+        console.log('Server error, try again later')
+      } else {
+        console.log('Request failed:', error.message)
+      }
+    }
+    
   }, []);
 
   const handleUsername = (event) => {
@@ -76,20 +85,34 @@ function Profile() {
       const data = { id, username, email, phone, password };
       const url = "http://localhost:5000/nonstaffusers";
 
-      const response = FetchRequest(url, "PUT", data);
-
-      response.then((value) => {
-        console.log(value);
-      });
+      try {
+        const response = await FetchRequest(url, "PUT", data);
+        console.log(response);
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
+      }
     } else {
       const data = { id, username, email, phone };
       const url = "http://localhost:5000/nonstaffusers/nopwd";
 
-      const response = FetchRequest(url, "PUT", data);
-
-      response.then((value) => {
-        console.log(value);
-      });
+      try {
+        const response = await FetchRequest(url, "PUT", data);
+        console.log(response);
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
+      }
     }
 
   };

@@ -23,25 +23,38 @@ function UserManagement() {
 
     const url = "http://localhost:5000/nonstaffusers";
 
-    const response = FetchRequest(url, "GET");
-
-    response.then((value) => {
-      setUsers(value.users);
-      console.log(value.users[0]);
-    });
+    try {
+      const response = await FetchRequest(url, "GET");
+      console.log(response.users[0]);
+      setUsers(response.users);
+    } catch (error) {
+      if (error.status === 404) {
+        console.log('Resource not found')
+      } else if (error.status >= 500) {
+        console.log('Server error, try again later')
+      } else {
+        console.log('Request failed:', error.message)
+      }
+    }
   }, [updated]);
 
   const handleSubmit = (id, active) => {
     const data = { id, active: active ? 0 : 1 };
     const url = "http://localhost:5000/nonstaffusers/updateactive";
-
-    const response = FetchRequest(url, "PUT", data);
-
-    response.then((value) => {
-      console.log(value);
-      setUpdated(!updated);
-    });
     console.log(data)
+    try {
+        const response = await FetchRequest(url, "PUT", data);
+        console.log(response);
+        setUpdated(!updated);
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
+      }
   };
 
   return (

@@ -42,17 +42,26 @@ function Landing() {
     console.log(sessionToken);
 
     if (sessionToken != null) {
-      const response = FetchRequestToken(url, "POST", sessionToken);
+      try {
+        const response = await FetchRequestToken(url, "POST", sessionToken);
 
-      response.then((value) => {
-        if (value.auth) {
-          setUser(value.user);
+        if (response.auth) {
+          setUser(response.user);
           setLoggedIn(true);
-          setAdmin(value.admin);
+          setAdmin(response.admin);
           navigate("/home");
         }
-        console.log(value);
-      });
+        console.log(response);
+
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
+      }
     }
   }, [])
 

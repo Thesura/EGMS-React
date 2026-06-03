@@ -46,16 +46,23 @@ function Register() {
       const data = { username, password, email, phone };
       const url = "http://localhost:5000/nonstaffusers";
 
-      const response = FetchRequest(url, "POST", data);
-
-      console.log(response);
-
-      alert("Please login with your created account");
-
-      navigate("/login");
+      try {
+        const response = await FetchRequest(url, "POST", data);
+        console.log(response);
+        alert("Please login with your created account");
+        navigate("/login");
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
+      }
     } else {
       alert(
-        `Password and repeat password does not match. Password: ${password}, Repeat Password: ${repeat}`
+        `Password and repeat password does not match.`
       );
     }
   };

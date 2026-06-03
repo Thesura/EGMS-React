@@ -31,17 +31,26 @@ function Login() {
     console.log(sessionToken);
 
     if (sessionToken != null) {
-      const response = FetchRequestToken(url, "POST", sessionToken);
+      try {
+        const response = await FetchRequestToken(url, "POST", sessionToken);
 
-      response.then((value) => {
-        if (value.auth) {
-          setUser(value.user);
+        if (response.auth) {
+          setUser(response.user);
           setLoggedIn(true);
-          setAdmin(value.admin);
+          setAdmin(response.admin);
           navigate("/home");
         }
-        console.log(value);
-      });
+        console.log(response);
+
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
+      }
     }
   }, []);
 
@@ -65,24 +74,33 @@ function Login() {
     const url = `http://localhost:5000/${staff ? "staffusers" : "nonstaffusers"
       }/login`;
 
-    const response = FetchRequest(url, "POST", data);
+    try {
+      const response = await FetchRequest(url, "POST", data);
 
-    response.then((value) => {
-      console.log(value);
-      if (value.auth) {
+      console.log(response);
+      if (response.auth) {
         setUser(username);
         setLoggedIn(true);
-        setAdmin(value.admin);
-        Cookies.set("token", value.token, { expires: 1 });
+        setAdmin(response.admin);
+        Cookies.set("token", response.token, { expires: 1 });
         navigate("/home");
-      } else if (value.inactive) {
+      } else if (response.inactive) {
         console.log("inactive");
         alert("User account is Inactive");
       } else {
         console.log("failed");
         alert("Incorrect Credentials");
       }
-    });
+    } catch (error) {
+      if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
+    }
+      
   };
 
   return (

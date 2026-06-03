@@ -19,12 +19,19 @@ function Status() {
 
     const url = "http://localhost:5000/status/areas";
 
-    const response = FetchRequest(url, "GET");
-
-    response.then((value) => {
-      console.log(value);
-      setAreas(value.areas);
-    });
+    try {
+      const response = await FetchRequest(url, "GET");
+      console.log(response);
+      setAreas(response.areas);
+    } catch (error) {
+      if (error.status === 404) {
+        console.log('Resource not found')
+      } else if (error.status >= 500) {
+        console.log('Server error, try again later')
+      } else {
+        console.log('Request failed:', error.message)
+      }
+    }
   }, []);
 
   const libraries = ["geometry"];

@@ -14,26 +14,19 @@ function Schedule() {
 
     const url = "http://localhost:5000/schedule";
 
-    const response = FetchRequest(url, "GET");
-
-    response.then((value) => {
-      setSchedules(value.schedules);
-      console.log(value.schedules[0]);
-      // setID(value.schedules[0].id);
-      // setArea(value.schedules[0].area);
-      // setStart(value.schedules[0].start);
-      // setEnd(value.schedules[0].end);
-      // setReason(value.schedules[0].reason);
-
-      // setTableBody(
-      // <tr>
-      // <td>{area}</td>
-      // <td>{start}</td>
-      // <td>{end}</td>
-      // <td>{reason}</td>
-      // </tr>
-      // )
-    });
+    try {
+      const response = await FetchRequest(url, "GET");
+      console.log(response.schedules[0]);
+      setSchedules(response.schedules);
+    } catch (error) {
+      if (error.status === 404) {
+        console.log('Resource not found')
+      } else if (error.status >= 500) {
+        console.log('Server error, try again later')
+      } else {
+        console.log('Request failed:', error.message)
+      }
+    }
   }, []);
 
   return (
