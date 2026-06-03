@@ -1,5 +1,3 @@
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap/dist/js/bootstrap'
 import $ from 'jquery';
 import React from 'react';
 import { createRoot } from 'react-dom/client';

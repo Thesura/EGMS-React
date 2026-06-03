@@ -6,10 +6,20 @@ function FetchRequest(url, method, data = {}) {
         body: JSON.stringify(data)
     };
 
-    const responseData = fetch(url, request)
-        .then(response => response.json());
+    const response = await fetch(url, request);
 
-    return responseData;
+    if(!response.ok){
+        const error = new Error(`HTTP ${response.status}: ${response.statusText}`);
+        error.status = response.status;
+        error.response = response;
+        throw error;
+    }
+
+    if(response.status === 204){
+        return null;
+    }
+
+    return response.json();
 };
 
 function FetchRequestToken(url, method, token) {
@@ -18,10 +28,20 @@ function FetchRequestToken(url, method, token) {
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
     };
 
-    const responseData = fetch(url, request)
-        .then(response => response.json());
+    const response = await fetch(url, request);
 
-    return responseData;
+    if(!response.ok){
+        const error = new Error(`HTTP ${response.status}: ${response.statusText}`);
+        error.status = response.status;
+        error.response = response;
+        throw error;
+    }
+
+    if(response.status === 204){
+        return null;
+    }
+
+    return response.json();
 };
 
 export { FetchRequest, FetchRequestToken };
