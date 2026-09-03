@@ -36,33 +36,37 @@ function Landing() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = "http://localhost:5000/nonstaffusers/login/token";
+    
 
-    const sessionToken = Cookies.get("token");
-    console.log(sessionToken);
+    async function checkToken() {
+      const url = "http://localhost:5000/nonstaffusers/login/token";
 
-    if (sessionToken != null) {
-      try {
-        const response = await FetchRequestToken(url, "POST", sessionToken);
+      const sessionToken = Cookies.get("token");
+      console.log(sessionToken);
+      if (sessionToken != null) {
+        try {
+          const response = await FetchRequestToken(url, "POST", sessionToken);
 
-        if (response.auth) {
-          setUser(response.user);
-          setLoggedIn(true);
-          setAdmin(response.admin);
-          navigate("/home");
-        }
-        console.log(response);
+          if (response.auth) {
+            setUser(response.user);
+            setLoggedIn(true);
+            setAdmin(response.admin);
+            navigate("/home");
+          }
+          console.log(response);
 
-      } catch (error) {
-        if (error.status === 404) {
-          console.log('Resource not found')
-        } else if (error.status >= 500) {
-          console.log('Server error, try again later')
-        } else {
-          console.log('Request failed:', error.message)
+        } catch (error) {
+          if (error.status === 404) {
+            console.log('Resource not found')
+          } else if (error.status >= 500) {
+            console.log('Server error, try again later')
+          } else {
+            console.log('Request failed:', error.message)
+          }
         }
       }
     }
+    checkToken();
   }, [])
 
   return (

@@ -21,24 +21,28 @@ function UserManagement() {
   useEffect(() => {
     setActive("User Management");
 
-    const url = "http://localhost:5000/nonstaffusers";
+    async function fetchUsers() {
+      const url = "http://localhost:5000/nonstaffusers";
 
-    try {
-      const response = await FetchRequest(url, "GET");
-      console.log(response.users[0]);
-      setUsers(response.users);
-    } catch (error) {
-      if (error.status === 404) {
-        console.log('Resource not found')
-      } else if (error.status >= 500) {
-        console.log('Server error, try again later')
-      } else {
-        console.log('Request failed:', error.message)
+      try {
+        const response = await FetchRequest(url, "GET");
+        console.log(response.users[0]);
+        setUsers(response.users);
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
       }
     }
+    fetchUsers();
+    
   }, [updated]);
 
-  const handleSubmit = (id, active) => {
+  const handleSubmit = async (id, active) => {
     const data = { id, active: active ? 0 : 1 };
     const url = "http://localhost:5000/nonstaffusers/updateactive";
     console.log(data)

@@ -21,37 +21,40 @@ function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setActive("Login");
+    async function checkToken() {
+      const url = "http://localhost:5000/nonstaffusers/login/token";
 
-    const url = "http://localhost:5000/nonstaffusers/login/token";
+      const sessionToken = Cookies.get("token");
+      console.log(sessionToken);
 
-    const sessionToken = Cookies.get("token");
-    console.log(sessionToken);
+      if (sessionToken != null) {
+        try {
+          const response = await FetchRequestToken(url, "POST", sessionToken);
 
-    if (sessionToken != null) {
-      try {
-        const response = await FetchRequestToken(url, "POST", sessionToken);
+          if (response.auth) {
+            setUser(response.user);
+            setLoggedIn(true);
+            setAdmin(response.admin);
+            navigate("/home");
+          }
+          console.log(response);
 
-        if (response.auth) {
-          setUser(response.user);
-          setLoggedIn(true);
-          setAdmin(response.admin);
-          navigate("/home");
-        }
-        console.log(response);
-
-      } catch (error) {
-        if (error.status === 404) {
-          console.log('Resource not found')
-        } else if (error.status >= 500) {
-          console.log('Server error, try again later')
-        } else {
-          console.log('Request failed:', error.message)
+        } catch (error) {
+          if (error.status === 404) {
+            console.log('Resource not found')
+          } else if (error.status >= 500) {
+            console.log('Server error, try again later')
+          } else {
+            console.log('Request failed:', error.message)
+          }
         }
       }
     }
+    checkToken();
   }, []);
 
   const handleUsername = (event) => {
@@ -66,12 +69,11 @@ function Login() {
     setStaff(!staff);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(username);
     const data = { username, password };
-    const url = `http://localhost:5000/${staff ? "staffusers" : "nonstaffusers"
+    const url = `http://localhost:3000/${staff ? "staffusers" : "nonstaffusers"
       }/login`;
 
     try {
@@ -86,18 +88,21 @@ function Login() {
         navigate("/home");
       } else if (response.inactive) {
         console.log("inactive");
-        alert("User account is Inactive");
+        setError("Account is inactive");
       } else {
         console.log("failed");
-        alert("Incorrect Credentials");
+        setError("Incorrect Credentials");
       }
     } catch (error) {
       if (error.status === 404) {
           console.log('Resource not found')
+          setError("Incorrect Credentials");
         } else if (error.status >= 500) {
           console.log('Server error, try again later')
+          setError("Server error, try again later");
         } else {
           console.log('Request failed:', error.message)
+          setError("Request failed, please try again later");
         }
     }
       
@@ -105,12 +110,14 @@ function Login() {
 
   return (
     <div className="mt-5">
+      <span className="text-danger mb-1">{error}</span>
       <form className="justify-center content-center" onSubmit={handleSubmit}>
         <div className="mb-3 form-floating text-body">
           <input
             type="text"
             className="text-input"
             id="username"
+            name="username"
             placeholder="Username"
             onChange={handleUsername}
             required
@@ -122,6 +129,7 @@ function Login() {
             type="password"
             className="text-input"
             id="password"
+            name="password"
             placeholder="Password"
             onChange={handlePassword}
             required
@@ -133,6 +141,7 @@ function Login() {
             type="checkbox"
             className="sr-only peer"
             id="userType"
+            name="userType"
             checked={staff}
             onChange={handleStaffCheck}
           />
@@ -141,11 +150,11 @@ function Login() {
     rtl:peer-checked:after:translate-x-full peer-checked:after:border-sky-100 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-slate-950 
     after:border-sky-600 after:border after:rounded-full after:h-5 after:w-5 peer-checked:after:bg-sky-600 after:transition-all after:duration-150 after:ease-linear"
           ></div>
-          <pan className="mx-2">Staff Member</pan>
+          <span className="mx-2">Staff Member</span>
         </label>
         <div className="flex justify-center">
           <button type="submit" className="button button-sky">
-            Submit
+            Login
           </button>
         </div>
       </form>

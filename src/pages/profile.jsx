@@ -33,29 +33,32 @@ function Profile() {
   useEffect(() => {
     setActive("Profile");
 
-    const data = { username: user };
-    const url = "http://localhost:5000/nonstaffusers/getuser";
+    async function fetchUserData() {
+      const data = { username: user };
+      const url = "http://localhost:5000/nonstaffusers/getuser";
 
-    try {
-      const response = await FetchRequest(url, "POST", data);
+      try {
+        const response = await FetchRequest(url, "POST", data);
 
-      console.log(response);
-      setUserObject(response.user[0]);
-      setId(response.user[0].id);
-      setUsername(response.user[0].username);
-      setEmail(response.user[0].email);
-      setPhone(response.user[0].phone);
-      setLoading(false);
-      console.log(id);
-    } catch (error) {
-      if (error.status === 404) {
-        console.log('Resource not found')
-      } else if (error.status >= 500) {
-        console.log('Server error, try again later')
-      } else {
-        console.log('Request failed:', error.message)
+        console.log(response);
+        setUserObject(response.user[0]);
+        setId(response.user[0].id);
+        setUsername(response.user[0].username);
+        setEmail(response.user[0].email);
+        setPhone(response.user[0].phone);
+        setLoading(false);
+        console.log(id);
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
       }
     }
+    fetchUserData();
     
   }, []);
 
@@ -79,7 +82,7 @@ function Profile() {
     setEmail(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (editPassword) {
       const data = { id, username, email, phone, password };

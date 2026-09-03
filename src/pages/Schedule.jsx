@@ -12,21 +12,25 @@ function Schedule() {
   useEffect(() => {
     setActive("Schedule");
 
-    const url = "http://localhost:5000/schedule";
+    async function fetchSchedules() {
+      const url = "http://localhost:5000/schedule";
 
-    try {
-      const response = await FetchRequest(url, "GET");
-      console.log(response.schedules[0]);
-      setSchedules(response.schedules);
-    } catch (error) {
-      if (error.status === 404) {
-        console.log('Resource not found')
-      } else if (error.status >= 500) {
-        console.log('Server error, try again later')
-      } else {
-        console.log('Request failed:', error.message)
+      try {
+        const response = await FetchRequest(url, "GET");
+        console.log(response.schedules[0]);
+        setSchedules(response.schedules);
+      } catch (error) {
+        if (error.status === 404) {
+          console.log('Resource not found')
+        } else if (error.status >= 500) {
+          console.log('Server error, try again later')
+        } else {
+          console.log('Request failed:', error.message)
+        }
       }
     }
+    fetchSchedules();
+    
   }, []);
 
   return (

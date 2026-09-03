@@ -38,18 +38,18 @@ function Register() {
     setEmail(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (password === repeat) {
       // alert(`Name: ${username}, Pass: ${password}, repeat: ${repeat}, phone: ${phone}, email: ${email}`);
       const data = { username, password, email, phone };
-      const url = "http://localhost:5000/nonstaffusers";
+      const url = "http://localhost:3000/nonstaffusers";
 
       try {
         const response = await FetchRequest(url, "POST", data);
         console.log(response);
-        alert("Please login with your created account");
+        alert("Account created successfully. Please login with your created account");
         navigate("/login");
       } catch (error) {
         if (error.status === 404) {

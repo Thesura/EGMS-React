@@ -30,7 +30,7 @@ function CreateSchedule() {
     setReason(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
       area,
@@ -40,7 +40,7 @@ function CreateSchedule() {
     };
     const url = "http://localhost:5000/schedule";
 
-    const response = FetchRequest(url, "POST", data);
+    const response = await FetchRequest(url, "POST", data);
 
     console.log(response);
 

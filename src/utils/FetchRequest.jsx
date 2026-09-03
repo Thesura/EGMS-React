@@ -8,6 +8,8 @@ async function FetchRequest(url, method, data = {}) {
 
     const response = await fetch(url, request);
 
+    console.log(response);
+
     if(!response.ok){
         const error = new Error(`HTTP ${response.status}: ${response.statusText}`);
         error.status = response.status;

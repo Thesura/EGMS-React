@@ -67,18 +67,22 @@
 
   .text-input-disabled{
     @apply p-2 bg-slate-600 text-slate-300 border-solid border rounded-lg border-slate-400 focus:outline-none;
-}
+  }
+
+  .text-danger{
+    @apply text-red-400 text-sm font-semibold;
+  }
 
   .menu-card{
-    @apply rounded-3xl;
+    @apply rounded-3xl border-3 border-solid;
   }
 
   .menu-card-sky{
-    @apply bg-sky-800
+    @apply bg-sky-900 border-sky-600;
   }
 
   .menu-card-emerald{
-    @apply bg-emerald-800
+    @apply bg-emerald-900 border-emerald-600;
   }
 
   .menu-card-header{
@@ -86,11 +90,11 @@
   }
 
   .menu-card-header-sky{
-    @apply bg-sky-800 border-b-sky-500;
+    @apply bg-sky-900 border-b-sky-500;
   }
 
   .menu-card-header-emerald{
-    @apply bg-emerald-800 border-b-emerald-500;
+    @apply bg-emerald-900 border-b-emerald-500;
   }
 
   .menu-card-title{
